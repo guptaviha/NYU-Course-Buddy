@@ -1,7 +1,7 @@
 function submittoRDS(){
     console.log('Im here');
     //var school = document.getElementById("school").value;
-    var username = document.getElementById("school").value;
+    var school = document.getElementById("school").value;
     var program = document.getElementById("program").value;
     var semester = document.getElementById("semester").value;
     
@@ -14,16 +14,16 @@ function submittoRDS(){
 
     }
     console.log(body);
-    var apigClient = apigClientFactory.newClient({ apiKey: "J56OUp8mfX96lMIfRICIM39qmd7vrNXE1A1bYsze" });
+    var apigClient = apigClientFactory.newClient({ });
     console.log(apigClient);
     var params={}
     var additionalParams = {};
     apigClient.rootPost(params, body , additionalParams).then(function(res){
+      
       console.log("success");
-      console.log(res);
-      showImages(res.data)
+      
     }).catch(function(result){
-        console.log(result);
+        
         console.log("NO RESULT");
     });
 

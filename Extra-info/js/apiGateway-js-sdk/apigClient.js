@@ -87,7 +87,7 @@ apigClientFactory.newClient = function (config) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
         apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
-        console.log("here");
+        
         var rootPostRequest = {
             verb: 'post'.toUpperCase(),
             path: pathComponent + uritemplate('/').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
@@ -95,7 +95,7 @@ apigClientFactory.newClient = function (config) {
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
-        console.log(apiGatewayClient.makeRequest(rootPostRequest, authType, additionalParams, config.apiKey));
+        
         
         return apiGatewayClient.makeRequest(rootPostRequest, authType, additionalParams, config.apiKey);
     };
@@ -122,13 +122,13 @@ apigClientFactory.newClient = function (config) {
     apigClient.coursesGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
-        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['program', 'school'], ['body']);
         
         var coursesGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/courses').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
             headers: apiGateway.core.utils.parseParametersToObject(params, []),
-            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['program', 'school']),
             body: body
         };
         
@@ -158,13 +158,13 @@ apigClientFactory.newClient = function (config) {
     apigClient.coursesCourseGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
-        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['courseID'], ['body']);
         
         var coursesCourseGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/courses/course').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
             headers: apiGateway.core.utils.parseParametersToObject(params, []),
-            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['courseID']),
             body: body
         };
         
