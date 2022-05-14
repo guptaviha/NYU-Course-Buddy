@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>        
+<script src="vendor/select2/select2.min.js"></script>
+<script src="vendor/datepicker/moment.min.js"></script>
+<script src="vendor/datepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/apigClient.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/axios/dist/axios.standalone.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/CryptoJS/rollups/sha256.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/CryptoJS/components/hmac.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/CryptoJS/components/enc-base64.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/url-template/url-template.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/apiGatewayCore/sigV4Client.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/apiGatewayCore/apiGatewayClient.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/apiGatewayCore/utils.js"></script>
+    <script>
+        //User info
+    var access_token = localStorage.getItem("id_token");
+    console.log(access_token);
+    let params={
+        "Authorization":access_token,
+        "school":"UC"    
+    }
+    var body={
+        "Authorization":access_token
+        }
+    var apigClient = apigClientFactory.newClient({ });
+    //console.log(apigClient)
+    apigClient.usersUserGet(params, body , {}).then(function(res){
+      
+      console.log(res["data"]);
+      userdata=res["data"];
+      
+      document.getElementById("username").innerHTML=document.getElementById("username").innerHTML+userdata["username"];
+      document.getElementById("school").innerHTML=document.getElementById("school").innerHTML+userdata["school"];
+      document.getElementById("program").innerHTML=document.getElementById("program").innerHTML+userdata["program"];
+      document.getElementById("semester").innerHTML=document.getElementById("semester").innerHTML+userdata["semester"];
+
+
+      
+    }).catch(function(result){
+        
+        console.log("NO RESULT");
+    });
+    //get schools from api
+    //
+    apigClient.schoolsGet(params, {} , {}).then(function(res){
+      
+    var schools = Object.keys(res['data']);
+    var codes=Object.values(res['data'])
+    var select = document.createElement("select");
+    select.name = "schools";
+    select.id = "schoollist"
+    for (const val of schools)
+    {
+        var option = document.createElement("option");
+        option.value = val+" - "+res['data'][val];
+        option.text = val.charAt(0).toUpperCase() + val.slice(1);
+        select.appendChild(option);
+    }
+    var label = document.createElement("label");
+    label.innerHTML = "School "
+    label.htmlFor = "schools";
+    document.getElementById("drp").appendChild(label).appendChild(select);
+    //console.log(document.getElementById("schoollist").value);
+    document.getElementById('schoolz').innerHTML=document.getElementById("schoollist").value;
+    params={
+        "Authorization":access_token,
+        "school":    document.getElementById("schoolz").innerHTML.slice(-2)
+    }  
+    }).catch(function(result){
+        
+        console.log("NO RESULT");
+    });
+
+    let values={}
+    let values_codes=[]
+    function funct(){
+ 
+        document.getElementById('schoolz').innerHTML=document.getElementById("schoollist").value;  
+        console.log(document.getElementById("schoolz").innerHTML.slice(-2));
+        params={
+        "Authorization":access_token,
+        "school":    document.getElementById("schoolz").innerHTML.slice(-2) 
+    }
+    let element = document.getElementById("drppr");
+    while (element.firstChild) {
+    element.removeChild(element.firstChild);
+    }
+    
+
+    apigClient.schoolsProgramsGet(params, {} , {}).then(function(res){
+      console.log(res['data']);
+      values={}; 
+      
+    values = res['data'];
+    values_codes=Object.keys(res['data']);
+    console.log(values_codes);
+    funcpr();
+      }).catch(function(result){
+          
+          console.log("NO RESULT");
+      });
+    
+    console.log("inside func");
+    
+    console.log(values);
+    
+    
+ 
+    
+
+    }
+    function funcprogram(){
+        document.getElementById('schoolz').innerHTML=document.getElementById("schoollist").value;  
+        document.getElementById('programz').innerHTML=document.getElementById("programlist").value; 
+    }
+
+    //schools end
+    //console.log(document.getElementById('schoolz').innerHTML);
+    
+    //get programs from school
+
+    function funcpr(){
+    
+    var select = document.createElement("select");
+    select.name = "programs";
+    select.id = "programlist"
+        console.log(values_codes);
+    for (const val of values_codes)
+    {
+        //console.log(values_codes[val]);
+        var option = document.createElement("option");
+        option.value = val;
+        option.text = values[val].charAt(0).toUpperCase() + values[val].slice(1);
+        select.appendChild(option);
+    }
+
+    var label = document.createElement("label");
+    label.innerHTML = "Choose your Program: "
+    label.htmlFor = "program";
+
+    document.getElementById("drppr").appendChild(label).appendChild(select);
+    document.getElementById('programz').innerHTML=document.getElementById("programlist").value;  
+
+
+        
+    }
+    apigClient.schoolsProgramsGet(params, {} , {}).then(function(res){
+      
+      //console.log(res['data']);
+      values=res['data'];
+      values_codes=Object.keys(res['data'])
+      funcpr(); 
+      }).catch(function(result){
+          
+          console.log("NO RESULT");
+      });
+
+
+
+      function searchcourse(){
+
+        params={
+        "Authorization":access_token,
+        "school":    document.getElementById("schoolz").innerHTML.slice(-2),
+        "program": document.getElementById('programz').innerHTML
+        }
+        school=document.getElementById('schoolz').innerHTML
+        program= document.getElementById('programz').innerHTML;
+        //coursesGet()
+        apigClient.coursesGet(params, {} , {}).then(function(res){
+      
+      console.log(res['data']);
+      document.getElementById('courses').innerHTML=document.getElementById('courses').innerHTML+JSON.stringify(res['data']);
+      
+      }).catch(function(result){
+          
+          console.log("NO RESULT");
+      });
+
+      }
+
+
+
+
+    </script>
+<body>
+
+<h1>User data</h1>
+<p id="username">Username:</p>
+<p id="school" >School:</p>
+<p id="program">Program:</p>
+<p id="semester">Semester:</p>
+
+<h1>Course search</h1>
+<div id="drp" onchange="funct()"></div>
+
+<p id="schoolz">hkh</p>
+
+<div id="drppr" onchange="funcprogram()"></div>
+<p id="programz" ></p>
+<button onclick="searchcourse()">Search</button>
+
+<p id="courses">Courses:</p>
+</body>
+</html>
