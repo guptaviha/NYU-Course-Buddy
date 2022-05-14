@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>        
+<script src="vendor/select2/select2.min.js"></script>
+<script src="vendor/datepicker/moment.min.js"></script>
+<script src="vendor/datepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/apigClient.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/axios/dist/axios.standalone.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/CryptoJS/rollups/sha256.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/CryptoJS/components/hmac.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/CryptoJS/components/enc-base64.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/url-template/url-template.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/apiGatewayCore/sigV4Client.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/apiGatewayCore/apiGatewayClient.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
+<script type="text/javascript" src="js/apiGateway-js-sdk/lib/apiGatewayCore/utils.js"></script>
+    <script>
+        //User info
+    var access_token = localStorage.getItem("id_token");
+    console.log(access_token);
+    var params={
+        "Authorization":access_token
+        }
+    var body={
+        "Authorization":access_token
+        }
+    var apigClient = apigClientFactory.newClient({ });
+    console.log(apigClient)
+    apigClient.usersUserGet(params, body , {}).then(function(res){
+      
+      console.log(res["data"]);
+      userdata=res["data"];
+      
+      document.getElementById("username").innerHTML=document.getElementById("username").innerHTML+userdata["username"];
+      document.getElementById("school").innerHTML=document.getElementById("school").innerHTML+userdata["school"];
+      document.getElementById("program").innerHTML=document.getElementById("program").innerHTML+userdata["program"];
+      document.getElementById("semester").innerHTML=document.getElementById("semester").innerHTML+userdata["semester"];
+
+
+      
+    }).catch(function(result){
+        
+        console.log("NO RESULT");
+    });
+    //
+
+    //Whislist
+    //function whishlistGet()
+    apigClient.whishlistGet(params, body , {}).then(function(res){
+      
+      console.log(res["data"][0]);
+      document.getElementById("whishlist").innerHTML=document.getElementById("whishlist").innerHTML+JSON.stringify(res["data"]);
+
+
+      
+    }).catch(function(result){
+        
+        console.log("NO RESULT");
+    });
+    </script>
+<body>
+
+<h1>User data</h1>
+<p id="username">Username:</p>
+<p id="school" >School:</p>
+<p id="program">Program:</p>
+<p id="semester">Semester:</p>
+
+<h1>Whishlist</h1>
+<p id="whishlist"></p>
+
+</body>
+</html>
