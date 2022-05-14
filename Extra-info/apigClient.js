@@ -127,7 +127,7 @@ apigClientFactory.newClient = function (config) {
         var coursesGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/courses').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, ['program', 'school']),
             body: body
         };
@@ -325,7 +325,7 @@ apigClientFactory.newClient = function (config) {
         var schoolsGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/schools').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
@@ -361,7 +361,7 @@ apigClientFactory.newClient = function (config) {
         var schoolsProgramsGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/schools/programs').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, ['school']),
             body: body
         };
