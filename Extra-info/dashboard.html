@@ -19,7 +19,8 @@
   <script type="text/javascript" src="js/apiGateway-js-sdk/lib/apiGatewayCore/utils.js"></script>
 </head>
 <body>
-  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <!-- Navbar -->
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
     <a class="navbar-brand" href="welcome.html">NYU Course Buddy</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,8 +32,11 @@
         <a class="nav-link active" href="dashboard.html" aria-current="page">Dashboard</a>
         <a class="nav-link" href="opencourses.html">Open Course Search</a>
         <a class="nav-link" href="reviews.html">Reviews</a>
+        <a class="nav-link" href="reviews.html">Preferences</a>
+        <a class="nav-link" href="reviews.html">Logout</a>
       </div>
     </div>
+  </div>
   </nav>
   
 
@@ -41,16 +45,55 @@
       <div class="col">
       </div>
       <div class="col-8">
-            <h1>Top Wishlisted</h1>
-            <p id="wishlistItems"></p>
-            <h1>Top Rated</h1>
-            <p id="ratedItems"></p>
-            <h1>Most Reviewed</h1>
-            <p id="reviewedItems"></p>
+      <!-- Content Goes here -->
+          <div class="container-fluid" style="margin-top:10px">
+            <div class="card">
+              <div class="card-header">
+                Most Wishlisted Courses
+              </div>
+              <div class="card-body">
+                  <ul id ="wishlist-items" class="list-group list-group-flush">
+                  </ul>
+              </div>
+            </div> 
+            </div> 
+            
+            <div class="container-fluid" style="margin-top:10px">
+            <div class="card">
+              <div class="card-header">
+                Top Rated Courses
+              </div>
+              <div id ="rated-items" class="card-body">
+              </div>
+            </div>  
+            </div>
+
+            <div class="container-fluid" style="margin-top:10px">
+            <div class="card">
+              <div class="card-header">
+                Most Reviewed courses in the last week
+              </div>
+              <div id ="reviewed-items" class="card-body">
+              </div>
+            </div>  
+            </div>                      
+
       </div>
       <div class="col">
       </div>
     </div>
+  </div>
+  
+  <!-- Footer -->
+  <div class="container fixed-bottom">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="text-muted">© 2021 NYU CS-GY-9223 Cloud Computing </span>
+    </div>
+  </footer>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>  
   <script src="js/dashboard.js"></script>
