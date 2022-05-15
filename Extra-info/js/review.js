@@ -16,13 +16,35 @@ var body={
 
 
 //
-
-
 var apigClient = apigClientFactory.newClient({ });
+//Fetching course details
+apigClient.coursesCourseGet(params, body , {}).then(function(res){
+  
+  console.log(res['data']);
+  //coursename
+  document.getElementById("coursename").innerHTML=res['data']['name'];
+  document.getElementById("recent_profs").innerHTML+=res['data']['recentprofessors'];
+  document.getElementById("description").innerHTML=res['data']['description'];
+  document.getElementById("credits").innerHTML=res['data']['credits'];
+  document.getElementById("school").innerHTML=res['data']['school'];
+
+
+
+  
+}).catch(function(result){
+    
+    console.log("NO RESULT");
+});
+
+
+
+//reviews for the course
 apigClient.reviewsGet(params, body , {}).then(function(res){
   
   reviews=res['data'];
   console.log(reviews);
+  var total=0;
+  var count=0;
   for(const review in reviews){
     // var li = document.createElement("li");
     // //console.log(coursedata[course]);
@@ -35,7 +57,7 @@ apigClient.reviewsGet(params, body , {}).then(function(res){
     outerdiv.id="outtter";
     var innerdiv=document.createElement("div");
     innerdiv.className = "card-header";
-    innerdiv.innerHTML="Professor:-"+reviews[review]['professor'];
+    innerdiv.innerHTML="Professor:-"+reviews[review]['professor']+", Rating: " +reviews[review]['quality'];
     var pelement=document.createElement("p");
     pelement.innerHTML=reviews[review]['createdTimestamp'].substring(0,10);
     var secondinnerdiv=document.createElement("div");
@@ -43,9 +65,11 @@ apigClient.reviewsGet(params, body , {}).then(function(res){
     secondinnerdiv.innerHTML=""+reviews[review]['user']+" says, </br>"+reviews[review]['reviewtext'];
     document.getElementById("reviews").appendChild(outerdiv).appendChild(innerdiv).appendChild(pelement);
     outerdiv.appendChild(secondinnerdiv);
-
+    count+=1
+    total=total+parseFloat(reviews[review]['quality']);
     
   }
+  document.getElementById("rating").innerHTML=total/count;
 
   
 }).catch(function(result){
