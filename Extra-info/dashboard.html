@@ -32,8 +32,13 @@
         <a class="nav-link active" href="dashboard.html" aria-current="page">Dashboard</a>
         <a class="nav-link" href="coursesearch.html">Course Search</a>
         <a class="nav-link" href="coursereviews.html">Course Reviews</a>
+<<<<<<< HEAD
         <a class="nav-link" href="preferences.html">Preferences</a>
         <a class="nav-link" href="https://cloudproj.auth.us-east-1.amazoncognito.com/logout?client_id=559b1t6mlrkhrp20von9q4v2ad&logout_uri=https://host-bucket-cloud.s3.us-east-1.amazonaws.com/switch/index.html">Logout</a>
+=======
+        <a class="nav-link" href="index.html">Preferences</a>
+        <a style="float:right;"class="nav-link" href="https://cloudproj.auth.us-east-1.amazoncognito.com/logout?client_id=559b1t6mlrkhrp20von9q4v2ad&logout_uri=https://host-bucket-cloud.s3.us-east-1.amazonaws.com/switch/index.html">Logout</a>
+>>>>>>> a7aab137c4047380b762779f20525fab58f90a63
       </div>
     </div>
   </div>
@@ -41,7 +46,6 @@
   
 
   <div class="container-fluid">
-    <div class="row">
       <div class="col">
       </div>
       <div class="col-8">
@@ -52,8 +56,8 @@
                 Most Wishlisted Courses
               </div>
               <div class="card-body">
-                  <ul id ="wishlist-items" class="list-group list-group-flush">
-                  </ul>
+                  <div id ="wishlist-items" class="list-group">
+                  </div>
               </div>
             </div> 
             </div> 
@@ -63,7 +67,9 @@
               <div class="card-header">
                 Top Rated Courses
               </div>
-              <div id ="rated-items" class="card-body">
+              <div class="card-body">
+                  <div id ="rated-items" class="list-group">
+                  </div>
               </div>
             </div>  
             </div>
@@ -71,10 +77,12 @@
             <div class="container-fluid" style="margin-top:10px">
             <div class="card">
               <div class="card-header">
-                Most Reviewed courses in the last week
+                Most Reviewed in last 10 days
               </div>
-              <div id ="reviewed-items" class="card-body">
-              </div>
+              <div class="card-body">
+                  <div id ="reviewed-items" class="list-group">
+                  </div>
+              </div>              
             </div>  
             </div>                      
 
@@ -85,13 +93,13 @@
   </div>
 
   <!-- Footer -->
-  <div class="container fixed-bottom">
+  <div class="container">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <div class="col-md-4 d-flex align-items-center">
       <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
         <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
       </a>
-      <span class="text-muted">© 2021 NYU CS-GY-9223 Cloud Computing </span>
+      <span class="text-muted">© 2022 NYU CS-GY-9223 Cloud Computing </span>
     </div>
     <a href="chatbot/chat.html" class="btn btn-primary" role="button">Chatbot Helper</a>
   </footer>
