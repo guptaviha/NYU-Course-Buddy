@@ -325,7 +325,7 @@ apigClientFactory.newClient = function (config) {
         var reviewsGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/reviews').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ["Authorization"]),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, ['courseID']),
             body: body
         };

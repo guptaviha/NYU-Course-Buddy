@@ -3,7 +3,7 @@
 //console.log("in reviews");
 //console.log(access_token);
 //access_token="eyJraWQiOiIrRUlCVHBVTngyeGhcLzg3MEpSUEh0T2QzRUdlRU1wZG1EZ3UxTkpTMWptOD0iLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiNUN5UEI4Y0RKRmJ0UGNoNGJuNm5iQSIsInN1YiI6IjAwMzI1YWM2LTE5YWQtNGY0MC05MDFhLTBlNjc2ZTkwNmZhMSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9MVDZmT1ZnQ2IiLCJjb2duaXRvOnVzZXJuYW1lIjoiYmFwcGkiLCJhdWQiOiI1NTliMXQ2bWxya2hycDIwdm9uOXE0djJhZCIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjUyNTU1NTAzLCJleHAiOjE2NTI1NTkxMDMsImlhdCI6MTY1MjU1NTUwMywianRpIjoiMmZkYTlkZGMtZTI3Yy00N2RiLTg2M2MtZTcxZGMwM2Q4MzM1IiwiZW1haWwiOiJjaGkuYmhhcmF0aHNhaUBnbWFpbC5jb20ifQ.IDZWeKhWjVwL2Z0wcm1zsP36ApELMQ0vFtAcnJ9wG-6dHOdkvvWPwYddsV-W9ZgMSV76HZrxHn5I9Z3Dx0RICl8k1llF6-IaXyd4Yc3Qj8o7xFZtDg3CYLn-67C9bYg_EE97pIc3rtEJyvS2UOkJxNVpKceAXs-cWaXSWeVY7PaswmVy69yF232gcEdeDORR8NrIzecjhtjP6eBk5lAO_-8Rq8aDyVoJccy7eVgRMSX1mvplXP1yk-294FvzB0Ai2ahrqXaMRKKfjQ382WrBIk3UxWTnRpGSd1ZQxYvatrsMdC02tipPYY_BWfJLCXK9Savjlsl790fXy-5dyMmVPw";
-var access_token="eyJraWQiOiIrRUlCVHBVTngyeGhcLzg3MEpSUEh0T2QzRUdlRU1wZG1EZ3UxTkpTMWptOD0iLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiR0R6MVpTNmNzOHBvM0FfYXo2VUxNQSIsInN1YiI6IjI2OGU4YjhjLTAxOWQtNGExNC1iZWUxLTA2Y2QwZDE5Y2NjMiIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9MVDZmT1ZnQ2IiLCJjb2duaXRvOnVzZXJuYW1lIjoiYmMzMTc3IiwiYXVkIjoiNTU5YjF0Nm1scmtocnAyMHZvbjlxNHYyYWQiLCJldmVudF9pZCI6ImIzOThjZTBmLWFkYWItNDZiMi1iMWNiLTI0MTQzZWU1ZTI5NyIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNjUyNjMxMTc1LCJleHAiOjE2NTI2MzQ3NzUsImlhdCI6MTY1MjYzMTE3NSwianRpIjoiNGEyYzRkMWMtMzBjNS00N2IyLTljMjYtYmY0YTU2MjgxNTA2IiwiZW1haWwiOiJiYzMxNzdAbnl1LmVkdSJ9.dhlH6tFCNB7YcrbW_ZS8hEMQniGw7Bqn8QF1NWHSdLdHe7ak9eOZLeVA4-8H242mEV-Ma6Ze5Z0q8dzp-u9AaLwSnxDXHZmam1ZTw76jAgnatePAhdfXnj8mLNePkFv7UJwmTvNOqrT4hJoEe1_zP9QH1o_b-Y2Ly-ipUsWXBzhlj71mMf_B9CxmOg9MTs200hoTnqOsJ_yD9cxI8jAMxa2kZRHwfOy8IXK6OWxtCENPrYqnJpUWb7-pN8JI9V1Fz1CkjD5K3YfQj5h0jf4faIFK1TBKI2b68WbmCf0Q6yIjlPk9NmudwOpii3K3rSY-9rqyHcOyQca0_amyVELJ0g";
+var access_token="eyJraWQiOiIrRUlCVHBVTngyeGhcLzg3MEpSUEh0T2QzRUdlRU1wZG1EZ3UxTkpTMWptOD0iLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiM3RRSV81Skg3Sl9PYm5Vc3V0ZktMdyIsInN1YiI6IjI2OGU4YjhjLTAxOWQtNGExNC1iZWUxLTA2Y2QwZDE5Y2NjMiIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9MVDZmT1ZnQ2IiLCJjb2duaXRvOnVzZXJuYW1lIjoiYmMzMTc3IiwiYXVkIjoiNTU5YjF0Nm1scmtocnAyMHZvbjlxNHYyYWQiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTY1MjY0MDIwMSwiZXhwIjoxNjUyNjQzODAxLCJpYXQiOjE2NTI2NDAyMDEsImp0aSI6ImY3YTUwNjJkLTc3YWMtNGU5OS04ZDgzLWM5YmRiNjExMGViMiIsImVtYWlsIjoiYmMzMTc3QG55dS5lZHUifQ.AEEGzoIyEm7cNUCwNb3P4mIh7szb9Np8A-AzneGX2RozRjqnYJKHApwFya7EEQtUMxyKIiKCX3vtg3OPfieBbCx50jx7JIsF_le4z0tt8WPTFWPyr8ZMOhDr1yKqa87OElBYd-hZGmimJDPmX-4CwC5D42Fujt7R2BpxHyAQnTzPVwMHOOFikvFgV4Nh9IGvmfaume4jnJQXzh7ALpAcMdFrg1_idK8-nDNIOzCj7n3e8o7vatkiVr1KYBQ13xuglCz4eJxV5LsNftjJlTN11zs4lTSvO7Fd6w5Z31tl4UO_4R89b0sIL12F3VcUeN-Ic5g_5yWH1eSdbwpdSeQjgg";
 var params={
     "Authorization":access_token,
     "school":"UC"    
@@ -173,9 +173,9 @@ apigClient.schoolsProgramsGet(params, {} , {}).then(function(res){
     //coursesGet()
     apigClient.coursesGet(params, {} , {}).then(function(res){
   
-  console.log(res['data']);
-  //document.getElementById('courses').innerHTML=JSON.stringify(res['data']);
-  coursedata=res['data'];
+    console.log(res['data']);
+    //document.getElementById('courses').innerHTML=JSON.stringify(res['data']);
+    coursedata=res['data'];
 
   //append data to table
   
@@ -186,7 +186,7 @@ apigClient.schoolsProgramsGet(params, {} , {}).then(function(res){
     li.className = "list-group-item";
     li.innerHTML=coursedata[course]['name'];
     var anchor = document.createElement("a");
-    anchor.href="google.com";
+    anchor.href="/Users/bharath/Desktop/Stuff/SEM-2/CC/Project/GIT/NYU-Smart-Hub/Extra-info/review.html?q="+coursedata[course]['id'];
     anchor.style.textDecoration="none";
     //anchor.innerHTML=coursedata[course]['name'];
     anchor.appendChild(li);
