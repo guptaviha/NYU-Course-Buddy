@@ -26,7 +26,7 @@ apigClient.dashboardTopwishlistedGet(params, body , {}).then(function(res){
 apigClient.dashboardTopratedGet(params, body , {}).then(function(res){
   console.log(res["data"]);
   res["data"].forEach(function(subject) {
-    document.getElementById('rated-items').innerHTML += '<a href ="'+ 'review.html?q=' + subject.id + '" class="list-group-item list-group-item-action">' + subject.name + " | Avg Rating: "+ parseFloat(subject.rating).toFixed(2) + '</a>'    
+    document.getElementById('rated-items').innerHTML += '<a href ="'+ 'review.html?q=' + subject.id + '" class="list-group-item list-group-item-action">' + subject.name + " | Rating: "+ parseFloat(subject.rating).toFixed(2) + '</a>'    
     //document.getElementById('rated-items').innerHTML += '<li class="list-group-item">' + subject.name + '</li>'  
   });  
 }).catch(function(result){
