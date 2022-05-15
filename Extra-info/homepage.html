@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Analytics Dashboard</title>
+  <title>NYU Course Buddy Home</title>
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> 
   <script type="text/javascript" src="js/apiGateway-js-sdk/apigClient.js"></script>
@@ -28,8 +28,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="homepage.html">Home</a>
-        <a class="nav-link active" href="dashboard.html" aria-current="page">Dashboard</a>
+        <a class="nav-link active" href="homepage.html" aria-current="page">Home</a>
+        <a class="nav-link" href="dashboard.html">Dashboard</a>
         <a class="nav-link" href="opencourses.html">Course Search</a>
         <a class="nav-link" href="reviews.html">Course Reviews</a>
         <a class="nav-link" href="index.html">Preferences</a>
@@ -47,37 +47,16 @@
       <div class="col-8">
       <!-- Content Goes here -->
           <div class="container-fluid" style="margin-top:10px">
-            <div class="card">
-              <div class="card-header">
-                Most Wishlisted Courses
-              </div>
-              <div class="card-body">
-                  <ul id ="wishlist-items" class="list-group list-group-flush">
-                  </ul>
-              </div>
-            </div> 
-            </div> 
-            
-            <div class="container-fluid" style="margin-top:10px">
-            <div class="card">
-              <div class="card-header">
-                Top Rated Courses
-              </div>
-              <div id ="rated-items" class="card-body">
-              </div>
-            </div>  
-            </div>
+              <h1>User data</h1>
+              <p id="username">Username:</p>
+              <p id="school" >School:</p>
+              <p id="program">Program:</p>
+              <p id="semester">Semester:</p>
 
-            <div class="container-fluid" style="margin-top:10px">
-            <div class="card">
-              <div class="card-header">
-                Most Reviewed courses in the last week
-              </div>
-              <div id ="reviewed-items" class="card-body">
-              </div>
-            </div>  
-            </div>                      
-
+              <h1>Whishlist</h1>
+              <p id="whishlist"></p>
+              <button onclick="courses()">Course search</button>
+            </div>                   
       </div>
       <div class="col">
       </div>
@@ -97,6 +76,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>  
-  <script src="js/dashboard.js"></script>
+  <script src="js/homepage.js"></script>
 </body>
 </html>

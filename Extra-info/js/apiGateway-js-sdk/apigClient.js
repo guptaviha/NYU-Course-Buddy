@@ -523,7 +523,7 @@ apigClientFactory.newClient = function (config) {
         var usersUserGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/users/user').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ["Authorization"]),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
@@ -577,7 +577,7 @@ apigClientFactory.newClient = function (config) {
         var whishlistGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/whishlist').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ["Authorization"]),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
