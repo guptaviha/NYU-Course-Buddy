@@ -6,31 +6,47 @@ var params={
 var body={
     "Authorization":access_token
     }
-
 var apigClient = apigClientFactory.newClient({ });
-console.log(apigClient)
-apigClient.usersUserGet(params, body , {}).then(function(res){
-  
-  console.log(res["data"]);
-  userdata=res["data"];
-  
-  document.getElementById("username1").innerHTML=userdata["studentname"];
-  document.getElementById("school").innerHTML=userdata["school"];
-  document.getElementById("program").innerHTML=userdata["program"] + " Major";
-  document.getElementById("semester").innerHTML=userdata["semester"];
-  document.getElementById("year").innerHTML=userdata["year"];
-  
+
+let schools = {}
+apigClient.schoolsGet(params, {} , {}).then(function(res) {
+        schools = res['data'];
+        schools = reverseMapping(schools)
+        let userdata = {}
+          apigClient.usersUserGet(params, body , {}).then(function(res){
+          userdata=res["data"];
+
+          var innerParams={
+          "Authorization":access_token,
+          "school":userdata["school"]
+          }
+          let programs = {}
+          apigClient.schoolsProgramsGet(innerParams, {} , {}).then(function(res) {        
+              programs = res['data'];
+              document.getElementById("program").innerHTML=programs[userdata["program"]] + " Major";
+          }).catch(function(result){
+              console.log("Error fetching programs for school.");
+          });
+          document.getElementById("username1").innerHTML=userdata["studentname"];
+          document.getElementById("school").innerHTML=schools[userdata["school"]];
+          document.getElementById("semester").innerHTML=userdata["semester"];
+          document.getElementById("year").innerHTML=userdata["year"];
+        
+      }).catch(function(result){
+          
+          console.log("NO RESULT");
+      });
+
 }).catch(function(result){
-    
-    console.log("NO RESULT");
+    console.log("Error getting schools data!");
 });
-//
+
+
+
 
 //Whislist
 apigClient.whishlistGet(params, body , {}).then(function(res){
-  console.log(res["data"]);
   var coursedata=res["data"];
-  //document.getElementById("whishlist").innerHTML=document.getElementById("whishlist").innerHTML+JSON.stringify(res["data"]);
   for(const course in coursedata){
     document.getElementById('wishlist-items').innerHTML += '<a href ="'+ 'review.html?q=' + coursedata[course]['courseid'] + '" class="list-group-item list-group-item-action">' + coursedata[course]['name'] + '</a>' 
 /*    var li = document.createElement("li");
@@ -38,14 +54,14 @@ apigClient.whishlistGet(params, body , {}).then(function(res){
     li.innerHTML=coursedata[course]['name'];
     document.getElementById("wishlist-items").appendChild(li);*/
   }
- 
-
-  
 }).catch(function(result){
-    
-    console.log("NO RESULT");
 });
 
-function courses(){
-    window.location.replace("https://host-bucket-cloud.s3.us-east-1.amazonaws.com/Extra-info/reviews.html");
-}
+
+function reverseMapping(obj){
+  var ret = {};
+  for(var key in obj){
+  ret[obj[key]] = key;
+  }
+    return ret;
+  }
