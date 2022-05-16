@@ -91,7 +91,7 @@ apigClientFactory.newClient = function (config) {
         var rootPostRequest = {
             verb: 'post'.toUpperCase(),
             path: pathComponent + uritemplate('/').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
