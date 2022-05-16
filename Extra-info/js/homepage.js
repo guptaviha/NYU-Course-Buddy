@@ -14,13 +14,11 @@ apigClient.usersUserGet(params, body , {}).then(function(res){
   console.log(res["data"]);
   userdata=res["data"];
   
-  document.getElementById("username").innerHTML=userdata["username"];
+  document.getElementById("username1").innerHTML=userdata["studentname"];
   document.getElementById("school").innerHTML=userdata["school"];
   document.getElementById("program").innerHTML=userdata["program"] + " Major";
   document.getElementById("semester").innerHTML=userdata["semester"];
-
-
-
+  document.getElementById("year").innerHTML=userdata["year"];
   
 }).catch(function(result){
     
@@ -29,18 +27,16 @@ apigClient.usersUserGet(params, body , {}).then(function(res){
 //
 
 //Whislist
-//function whishlistGet()
 apigClient.whishlistGet(params, body , {}).then(function(res){
-  
   console.log(res["data"]);
   var coursedata=res["data"];
-  document.getElementById("whishlist").innerHTML=document.getElementById("whishlist").innerHTML+JSON.stringify(res["data"]);
+  //document.getElementById("whishlist").innerHTML=document.getElementById("whishlist").innerHTML+JSON.stringify(res["data"]);
   for(const course in coursedata){
-    var li = document.createElement("li");
-    //console.log(coursedata[course]);
+    document.getElementById('wishlist-items').innerHTML += '<a href ="'+ 'review.html?q=' + coursedata[course]['courseid'] + '" class="list-group-item list-group-item-action">' + coursedata[course]['name'] + '</a>' 
+/*    var li = document.createElement("li");
     li.className = "list-group-item";
     li.innerHTML=coursedata[course]['name'];
-    document.getElementById("whishlists").appendChild(li);
+    document.getElementById("wishlist-items").appendChild(li);*/
   }
  
 

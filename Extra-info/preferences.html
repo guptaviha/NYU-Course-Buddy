@@ -48,80 +48,39 @@
       <div class="col-8">
       <!-- Content Goes here -->
           <div class="container-fluid" style="margin-top:10px">
-            <h1>Hey!!!<p id="username"></p></h1>
-
-
-            <!-- <div class="card-body p-4">
-              <div class="d-flex text-black">
-                <div class="flex-shrink-0">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                    alt="Generic placeholder image" class="img-fluid"
-                    style="width: 180px; border-radius: 10px;">
-                </div>
-                <div class="flex-grow-1 ms-3">
-                  <h5 class="mb-1" id="username">Name</h5>
-                  <p class="mb-2 pb-1" style="color: #2b2a2a;" id="program">Senior Journalist</p>
-                  <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
-                    style="background-color: #efefef;">
-                    <div>
-                      <p class="small text-muted mb-1">Sem</p>
-                      <p class="mb-0" id="semester">41</p>
-                    </div>
-                    <div class="px-3">
-                      <p class="small text-muted mb-1">School</p>
-                      <p class="mb-0" id="school">976</p>
-                    </div>
-                    <div>
-                      <p class="small text-muted mb-1">GPA</p>
-                      <p class="mb-0">8.5</p>
-                    </div>
-                  </div>
-                   <div class="d-flex pt-1">
-                    <button type="button" class="btn btn-outline-primary me-1 flex-grow-1">Chat</button>
-                    <button type="button" class="btn btn-primary flex-grow-1">Follow</button>
-                  </div> 
-                </div>
-              </div>
-            </div> -->
-            
-            <div class="card">
+            <h3 class="h4 text-center" style="margin-top:15px"><mark>Hi <span id="username"></span></mark></h3>
+            <div class="card" style="margin-top:15px">
               <div class="card-header">
-                Add Review
+                User Preferences
               </div>
               <div class="card-body">
-                <div class="mb-3">
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Display Name</label>
+                    <input type="text" class="form-control" id="studentname" placeholder="Name">
+                  </div>
+                  <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Upcoming Course Enrollment Year</label>
                     <input type="text" class="form-control" id="year" placeholder="2022">
                   </div>
-
-                  <!-- <select class="form-select" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select> -->
                   <div id="schools" onchange="schoolChange()">
-
                   </div>
-                  
-
                   <div id="programs"></div>
-                  
-                  
+                  </br>
                   <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Semester</label>
-                    <input type="text" type="range" min="0" max="100" class="form-control" id="semester" placeholder="SPRING">
+                    <label >Semester</label>
+                    <select id="semester">
+                      <option value="fa">Fall</option>
+                      <option value="sp">Spring</option>
+                      <option value="su">Summer</option>
+                      <option value="ja">Winter</option>
+                    </select>                    
+<!--                     <label for="exampleFormControlInput1" class="form-label">Semester</label>
+                    <input type="text" type="range" min="0" max="100" class="form-control" id="semester" placeholder="SPRING"> -->
                   </div>
                   
                   <button type="button" class="btn btn-secondary" onclick="updateDetails()">Update</button>
                       </div>
             </div> 
-            
-          
-            
-
-           
-           
           </div> 
       </div>
       <div class="col">
