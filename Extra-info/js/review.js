@@ -7,7 +7,7 @@ const urlParams = new URLSearchParams(queryString_url);
 const courseid = urlParams.get('q')
 function addreview(){
   //var btn=document.getElementById("button_for_new_review");
-  var url="/Users/bharath/Desktop/Stuff/SEM-2/CC/Project/GIT/NYU-Smart-Hub/Extra-info/newreview.html?q="+courseid;
+  var url="newreview.html?q="+courseid;
   window.location.replace(url);
 
 }
