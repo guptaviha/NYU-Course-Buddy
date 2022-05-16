@@ -8,29 +8,28 @@ const courseid = urlParams.get('courseid');
 const school = urlParams.get('school');
 const subject = urlParams.get('subject');
 const year = urlParams.get('year');
-const name = urlParams.get('name');
+const coursename = urlParams.get('name');
 const semester = urlParams.get('semester');
-function addreview(){
-  //var btn=document.getElementById("button_for_new_review");
-  var url="newreview.html?q="+courseid;
-  window.location.replace(url);
-
-}
-var params={
-    "Authorization":access_token,
-    "courseID":courseid
-    }
-var body={
-    "Authorization":access_token
-    }
 
 
-fetch(`https://schedge.a1liu.com/${year}/${semester}/search?full=true&school=${school}&subject=${subject}&query=${name}`).then((res)=>{
-  // fetch("https://schedge.a1liu.com/2021/fa/search?full=true&school=GY&subject=CS&query=Software Engineering I").then((res)=>{
+
+
+fetch(`https://schedge.a1liu.com/${year}/${semester}/search?full=true&school=${school}&subject=${subject}&query=${coursename}`).then((res)=>{
+  // Dynamically encapsulate html content in string and display in "details" id
   res.json().then(obj=>{
     console.log(obj);
     const sections = obj[0]["sections"];
-    let detailsHTML = '';
+    let detailsHTML = `
+      <div style="display: flex; justify-content: space-between">
+        <div>
+          <h2>Sections:</h2>
+        </div>
+        <div>
+          <a href="review.html?q=${courseid}">
+            <button type="button" class="btn btn-primary">Go To Review</button>
+          </a>
+        </div>
+      </div>`;
     for (let i = 0; i < sections.length; i++) {
       detailsHTML = detailsHTML + `
       <div class="card">
@@ -45,10 +44,8 @@ fetch(`https://schedge.a1liu.com/${year}/${semester}/search?full=true&school=${s
             ${sections[i]["registrationNumber"]}
           </div>
           <div>
-            <a href="review.html?q=${courseid}">
-              <button type="button" class="btn btn-primary">Go To Review</button>
-            </a>
-            <button type="button" class="btn btn-secondary" onclick="addToWishlist()">+ Wishlist</button>
+            <button type="button" class="btn btn-success" onclick="addWishlist('${sections[i]["code"]}', '${sections[i]["status"]}', '${sections[i]["name"]}')">+ Wishlist</button>
+            <button type="button" class="btn btn-danger" onclick="removeWishlist('${sections[i]["code"]}')">- Wishlist</button>
           </div>
         </div>
 
@@ -77,80 +74,99 @@ fetch(`https://schedge.a1liu.com/${year}/${semester}/search?full=true&school=${s
         </div>
       </div><br>`
   
-
-      
-      
     }
-    document.getElementById("details").innerHTML=detailsHTML
-
+    document.getElementById("details").innerHTML=detailsHTML;
   })
 })
 
 
 
-//
+
 var apigClient = apigClientFactory.newClient({ });
+
 //Fetching course details
+var params={
+  "Authorization":access_token,
+  "courseID":courseid
+  }
+
+var body={
+  "Authorization":access_token
+  }
+
 apigClient.coursesCourseGet(params, body , {}).then(function(res){
-  
-  // console.log(res['data']);
-  //coursename
   document.getElementById("coursename").innerHTML=res['data']['name'];
   document.getElementById("recent_profs").innerHTML+=res['data']['recentprofessors'];
   document.getElementById("description").innerHTML=res['data']['description'];
   document.getElementById("credits").innerHTML=res['data']['credits'];
   document.getElementById("school").innerHTML=res['data']['school'];
-
-
-
-  
 }).catch(function(result){
-    
     console.log("NO RESULT");
 });
 
 
-
-//reviews for the course
-apigClient.reviewsGet(params, body , {}).then(function(res){
-  
-  reviews=res['data'];
-  // console.log(reviews);
-  var total=0;
-  var count=0;
-  for(const review in reviews){
-    // var li = document.createElement("li");
-    // //console.log(coursedata[course]);
-    // li.className = "list-group-item";
-    // li.innerHTML=coursedata[course]['name'];
-    // document.getElementById("whishlists").appendChild(li);
-    
-    var outerdiv=document.createElement("div");
-    outerdiv.className = "card";
-    outerdiv.id="outtter";
-    var innerdiv=document.createElement("div");
-    innerdiv.className = "card-header";
-    innerdiv.innerHTML="Professor:-"+reviews[review]['professor']+", Rating: " +reviews[review]['quality'];
-    var pelement=document.createElement("p");
-    pelement.innerHTML=reviews[review]['createdTimestamp'].substring(0,10);
-    var secondinnerdiv=document.createElement("div");
-    secondinnerdiv.className = "card-body";
-    secondinnerdiv.innerHTML=""+reviews[review]['user']+" says, </br>"+reviews[review]['reviewtext'];
-    document.getElementById("reviews").appendChild(outerdiv).appendChild(innerdiv).appendChild(pelement);
-    outerdiv.appendChild(secondinnerdiv);
-    count+=1
-    total=total+parseFloat(reviews[review]['quality']);
-    
-  }
-  document.getElementById("rating").innerHTML=total/count;
-
-  
-}).catch(function(result){
-    
-    console.log("NO RESULT");
-});
+// Add to wishlist
+function addWishlist(section, status, sectionname){
+  console.log("inside addWishlist")
+  console.log(sectionname)
+  var params={
+    "Authorization":access_token
+    }
+  var body={
+    "Authorization":access_token,
+    "courseid":courseid,
+    "section": section,
+    "year": year,
+    "semester": semester,
+    "program": subject,
+    "school": school,
+    "lastStatus": status,
+    "name": sectionname
+    }
+  apigClient.whishlistPost(params, body , {}).then(function(res){
+    console.log("whishlistPost result");
+    console.log(res);
+    if (res.status == 200) {
+      console.log("200");
+      document.getElementById("toast-message").innerHTML=res.data;
+      document.getElementById("my-toast").style = "position: fixed; top: 80px; right: 20px; display:block; opacity:1; transition:all 0.6s;";
+      setTimeout(()=>{
+        document.getElementById("my-toast").style = "position: fixed; top: 80px; right: 20px; display:block; opacity:0; transition:all 0.6s;";
+      },6000)
+    }
+  }).catch(function(error){
+      console.log(error);
+  });
+}
 
 
 
-
-
+// Remove from wishlist
+function removeWishlist(section){
+  console.log("inside removeWishlist")
+  var params={
+    "Authorization":access_token,
+    "courseid":courseid,
+    "section": section,
+    "year": year,
+    "program": subject,
+    "school": school,
+    }
+  var body={
+    "Authorization":access_token
+    }
+  apigClient.whishlistDelete(params, body , {}).then(function(res){
+    console.log("whishlistDelete result");
+    console.log(res);
+    if (res.status == 200) {
+      console.log("200");
+      document.getElementById("toast-message").innerHTML=res.data;
+      document.getElementById("my-toast").style = "position: fixed; top: 80px; right: 20px; display:block; opacity:1; transition:all 0.6s;";
+      setTimeout(()=>{
+        document.getElementById("my-toast").style = "position: fixed; top: 80px; right: 20px; display:block; opacity:0; transition:all 0.6s;";
+      },6000)
+    }
+  }).catch(function(error){
+      console.log(error);
+  });
+}

@@ -631,7 +631,7 @@ apigClientFactory.newClient = function (config) {
         var whishlistPostRequest = {
             verb: 'post'.toUpperCase(),
             path: pathComponent + uritemplate('/whishlist').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
@@ -640,6 +640,22 @@ apigClientFactory.newClient = function (config) {
         return apiGatewayClient.makeRequest(whishlistPostRequest, authType, additionalParams, config.apiKey);
     };
     
+    apigClient.whishlistDelete = function (params, body, additionalParams) {
+      if(additionalParams === undefined) { additionalParams = {}; }
+      
+      apiGateway.core.utils.assertParametersDefined(params, ['courseid', 'program', 'year', 'school', 'section'], ['body']);
+      
+      var whishlistDeleteRequest = {
+          verb: 'delete'.toUpperCase(),
+          path: pathComponent + uritemplate('/whishlist').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+          headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
+          queryParams: apiGateway.core.utils.parseParametersToObject(params, ['courseid', 'program', 'year', 'school', 'section']),
+          body: body
+      };
+      
+      
+      return apiGatewayClient.makeRequest(whishlistDeleteRequest, authType, additionalParams, config.apiKey);
+  };
     
     apigClient.whishlistOptions = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
