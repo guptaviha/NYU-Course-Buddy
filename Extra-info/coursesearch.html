@@ -55,7 +55,7 @@
           <br>
 
           <div class="card">
-            <div class="card-header">
+            <div class="card-header text-white" style="background-color: #3D69FF;">
               <b>Search</b>
             </div>
             <div class="card-body">
@@ -84,17 +84,29 @@
                 <option value="2024">2024</option>
               </select>
               </br></br>
-              <button type="button" class="btn btn-primary" onclick="searchcourse()" href="#landher">Search</button>
+              <button type="button" class="btn btn-primary" onclick="searchcourse()" href="#results-section">Search</button>
             </div>
           </div>
+          <hr>
 
+          <div id="results-section" style="display:none">
+            <div id="search-bar" class="input-group" >
+              <input type="search" class="form-control rounded" placeholder="Search Results" aria-label="Search" aria-describedby="search-addon" />
+              <button type="button" class="btn btn-outline-primary">search</button>
+            </div>
+  
+  
+  
+            <!-- <div id="landher"></div> -->
+            <ul id="result-list" class="list-group">
+              </br>
+              <li class="list-group-item text-white" style="background-color: #3D69FF;" aria-disabled="true">
+                <b>Results</b>
+              </li>
+              <div id="insidecouse"></div>
+            </ul>
+          </div>
 
-          <div id="landher"></div>
-          <ul class="list-group">
-            </br>
-            <li class="list-group-item" aria-disabled="true"><b>Results</b></li>
-            <div id="insidecouse"></div>
-          </ul>
         </div>
       </div>
       <div class="col">

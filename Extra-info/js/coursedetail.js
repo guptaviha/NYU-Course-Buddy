@@ -9,9 +9,6 @@ const year = urlParams.get('year');
 const coursename = urlParams.get('name');
 const semester = urlParams.get('semester');
 
-
-
-
 fetch(`https://schedge.a1liu.com/${year}/${semester}/search?full=true&school=${school}&subject=${subject}&query=${coursename}`).then((res)=>{
   // Dynamically encapsulate html content in string and display in "details" id
   res.json().then(obj=>{
@@ -85,12 +82,8 @@ fetch(`https://schedge.a1liu.com/${year}/${semester}/search?full=true&school=${s
   })
 })
 
-
-
-
 var apigClient = apigClientFactory.newClient({ });
 
-//Fetching course details
 var params={
   "Authorization":access_token,
   "courseID":courseid
@@ -100,22 +93,8 @@ var body={
   "Authorization":access_token
   }
 
-// apigClient.coursesCourseGet(params, body , {}).then(function(res){
-//   document.getElementById("coursename").innerHTML=res['data']['name'];
-//   document.getElementById("description").innerHTML=res['data']['description'];
-//   document.getElementById("credits").innerHTML=res['data']['credits'];
-//   document.getElementById("school").innerHTML=res['data']['school'];
-//   document.getElementById("semester").innerHTML=res['data']['school'];
-//   document.getElementById("year").innerHTML=res['data']['school'];
-// }).catch(function(result){
-//     console.log("NO RESULT");
-// });
-
-
 // Add to wishlist
 function addWishlist(section, status, sectionname){
-  console.log("inside addWishlist")
-  console.log(sectionname)
   var params={
     "Authorization":access_token
     }
@@ -131,10 +110,7 @@ function addWishlist(section, status, sectionname){
     "name": sectionname
     }
   apigClient.whishlistPost(params, body , {}).then(function(res){
-    console.log("whishlistPost result");
-    console.log(res);
     if (res.status == 200) {
-      console.log("200");
       document.getElementById("toast-message").innerHTML=res.data;
       document.getElementById("my-toast").style = "position: fixed; top: 80px; right: 20px; display:block; opacity:1; transition:all 0.6s;";
       setTimeout(()=>{
@@ -146,11 +122,8 @@ function addWishlist(section, status, sectionname){
   });
 }
 
-
-
 // Remove from wishlist
 function removeWishlist(section){
-  console.log("inside removeWishlist")
   var params={
     "Authorization":access_token,
     "courseid":courseid,
@@ -163,10 +136,7 @@ function removeWishlist(section){
     "Authorization":access_token
     }
   apigClient.whishlistDelete(params, body , {}).then(function(res){
-    console.log("whishlistDelete result");
-    console.log(res);
     if (res.status == 200) {
-      console.log("200");
       document.getElementById("toast-message").innerHTML=res.data;
       document.getElementById("my-toast").style = "position: fixed; top: 80px; right: 20px; display:block; opacity:1; transition:all 0.6s;";
       setTimeout(()=>{
