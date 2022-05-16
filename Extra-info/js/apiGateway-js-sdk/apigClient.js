@@ -119,6 +119,42 @@ apigClientFactory.newClient = function (config) {
     };
     
     
+    apigClient.coursechatPost = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var coursechatPostRequest = {
+            verb: 'post'.toUpperCase(),
+            path: pathComponent + uritemplate('/coursechat').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(coursechatPostRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
+    apigClient.coursechatOptions = function (params, body, additionalParams) {
+        if(additionalParams === undefined) { additionalParams = {}; }
+        
+        apiGateway.core.utils.assertParametersDefined(params, [], ['body']);
+        
+        var coursechatOptionsRequest = {
+            verb: 'options'.toUpperCase(),
+            path: pathComponent + uritemplate('/coursechat').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
+            body: body
+        };
+        
+        
+        return apiGatewayClient.makeRequest(coursechatOptionsRequest, authType, additionalParams, config.apiKey);
+    };
+    
+    
     apigClient.coursesGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
@@ -217,7 +253,7 @@ apigClientFactory.newClient = function (config) {
         var dashboardMostreviewedGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/dashboard/mostreviewed').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, ["Authorization"]),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
@@ -253,7 +289,7 @@ apigClientFactory.newClient = function (config) {
         var dashboardTopratedGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/dashboard/toprated').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, ["Authorization"]),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
@@ -289,7 +325,7 @@ apigClientFactory.newClient = function (config) {
         var dashboardTopwishlistedGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/dashboard/topwishlisted').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, ["Authorization"]),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, []),
             body: body
         };
@@ -325,7 +361,7 @@ apigClientFactory.newClient = function (config) {
         var reviewsGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/reviews').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, ["Authorization"]),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
             queryParams: apiGateway.core.utils.parseParametersToObject(params, ['courseID']),
             body: body
         };
@@ -464,13 +500,13 @@ apigClientFactory.newClient = function (config) {
     apigClient.searchGet = function (params, body, additionalParams) {
         if(additionalParams === undefined) { additionalParams = {}; }
         
-        apiGateway.core.utils.assertParametersDefined(params, ['program', 'school', 'semester'], ['body']);
+        apiGateway.core.utils.assertParametersDefined(params, ['program', 'year', 'school', 'semester'], ['body']);
         
         var searchGetRequest = {
             verb: 'get'.toUpperCase(),
             path: pathComponent + uritemplate('/search').expand(apiGateway.core.utils.parseParametersToObject(params, [])),
-            headers: apiGateway.core.utils.parseParametersToObject(params, []),
-            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['program', 'school', 'semester']),
+            headers: apiGateway.core.utils.parseParametersToObject(params, ['Authorization']),
+            queryParams: apiGateway.core.utils.parseParametersToObject(params, ['program', 'year', 'school', 'semester']),
             body: body
         };
         
