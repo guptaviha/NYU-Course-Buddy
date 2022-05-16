@@ -1,3 +1,14 @@
+//var access_token = localStorage.getItem("id_token");
+//console.log(access_token);
+var access_token="eyJraWQiOiIrRUlCVHBVTngyeGhcLzg3MEpSUEh0T2QzRUdlRU1wZG1EZ3UxTkpTMWptOD0iLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoiM21PRTBCb1ozWFZ0OFlZQU0tSHcxUSIsInN1YiI6IjAwMzI1YWM2LTE5YWQtNGY0MC05MDFhLTBlNjc2ZTkwNmZhMSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9MVDZmT1ZnQ2IiLCJjb2duaXRvOnVzZXJuYW1lIjoiYmFwcGkiLCJhdWQiOiI1NTliMXQ2bWxya2hycDIwdm9uOXE0djJhZCIsImV2ZW50X2lkIjoiZWY2YTU4OTktOGRhNC00NjhhLWJlZjgtODQxN2E1NzVmNTJmIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE2NTI2NjUwNjEsImV4cCI6MTY1Mjc1MTQ2MSwiaWF0IjoxNjUyNjY1MDYxLCJqdGkiOiJkYzY1NTJiYy0wYjkxLTQ5YzktYjFhYy0zNjYxY2MxNzYyNWUiLCJlbWFpbCI6ImNoaS5iaGFyYXRoc2FpQGdtYWlsLmNvbSJ9.QeIbGjJriLb89pwUexPAHK6Q6agi0oH5WHIO_IlMC6cMGHf_kfxH1RRSLXj17F0ntBn9Klvr6kewrPI9FPU96lxaueaGpeA5LBDt4RmkZDC8LPGgWZer9Wr1Jlre_8Auz74klxj6X7YJ_UfMg1BDa4_DEKK34srMF_2ooTP-h6wNQArR27wYdwaZv5oCtB_ybRyRzXJDD4uAvdf67hQZqaDYe7ZhNfwJltp_jbeDmJRqGpCBDMjzV8rRaANVCXuSF4sR9yAMGSzXaowVdWleo89m-iP-3kNt_ZWbhFkL3EgYAtpugKZ0GieNEzBDi8_lS36Bp56e0XWtwWZAINu4nw";
+
+var params={
+    "Authorization":access_token
+    }
+var body={
+    "Authorization":access_token
+    }
+var apigClient = apigClientFactory.newClient({ });
 var checkout = {};
 
 $(document).ready(function() {
@@ -7,7 +18,7 @@ $(document).ready(function() {
 
   $(window).load(function() {
     $messages.mCustomScrollbar();
-    insertResponseMessage('Hi there, I\'m your personal Concierge. How can I help?');
+    insertResponseMessage('Hello, Welcome to NYU Course Buddy. How can I help you today?');
   });
 
   function updateScrollbar() {
@@ -27,14 +38,14 @@ $(document).ready(function() {
 
   function callChatbotApi(message) {
     // params, body, additionalParams
-    return sdk.chatbotPost({}, {
+    return apigClient.chatbotPost(params, {
       messages: [{
         type: 'unstructured',
         unstructured: {
           text: message
         }
       }]
-    }, {});
+    },{});
   }
 
   function insertMessage() {
@@ -54,6 +65,7 @@ $(document).ready(function() {
 
         if (data.messages && data.messages.length > 0) {
           console.log('received ' + data.messages.length + ' messages');
+          console.log(data.messages);
 
           var messages = data.messages;
 
@@ -103,12 +115,12 @@ $(document).ready(function() {
   })
 
   function insertResponseMessage(content) {
-    $('<div class="message loading new"><figure class="avatar"><img src="https://media.tenor.com/images/4c347ea7198af12fd0a66790515f958f/tenor.gif" /></figure><span></span></div>').appendTo($('.mCSB_container'));
+    $('<div class="message loading new"><figure class="avatar"><img src="https://c.tenor.com/qrFMm-y-hX8AAAAC/svn-serviervn.gif" /></figure><span></span></div>').appendTo($('.mCSB_container'));
     updateScrollbar();
 
     setTimeout(function() {
       $('.message.loading').remove();
-      $('<div class="message new"><figure class="avatar"><img src="https://media.tenor.com/images/4c347ea7198af12fd0a66790515f958f/tenor.gif" /></figure>' + content + '</div>').appendTo($('.mCSB_container')).addClass('new');
+      $('<div class="message new"><figure class="avatar"><img src="https://c.tenor.com/qrFMm-y-hX8AAAAC/svn-serviervn.gif" /></figure>' + content + '</div>').appendTo($('.mCSB_container')).addClass('new');
       setDate();
       updateScrollbar();
       i++;
