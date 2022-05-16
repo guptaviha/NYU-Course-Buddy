@@ -7,7 +7,7 @@ var body={
     "Authorization":access_token
     }
 var apigClient = apigClientFactory.newClient({ });
-
+let semesterLOV = { "fa":"Fall","sp":"Spring","su":"Summer","ja":"Winter"}
 let schools = {}
 apigClient.schoolsGet(params, {} , {}).then(function(res) {
         schools = res['data'];
@@ -29,7 +29,7 @@ apigClient.schoolsGet(params, {} , {}).then(function(res) {
           });
           document.getElementById("username1").innerHTML=userdata["studentname"];
           document.getElementById("school").innerHTML=schools[userdata["school"]];
-          document.getElementById("semester").innerHTML=userdata["semester"];
+          document.getElementById("semester").innerHTML=semesterLOV[userdata["semester"]];
           document.getElementById("year").innerHTML=userdata["year"];
         
       }).catch(function(result){
