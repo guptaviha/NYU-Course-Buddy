@@ -34,6 +34,7 @@ apigClient.schoolsGet(params, {}, {}).then(function (res) {
 
   var schools = Object.keys(res['data']);
   var codes = Object.values(res['data'])
+  // sortLists(schools,codes)
   var select = document.createElement("select");
   //class class="form-select"
   //select.className = "list-group-item";
@@ -153,6 +154,26 @@ apigClient.schoolsProgramsGet(params, {}, {}).then(function (res) {
 });
 
 let coursedata = {}
+
+function sortLists(names,codes) {
+  //1) combine the arrays:
+  var list = [];
+  for (var j = 0; j < names.length; j++) 
+      list.push({'name': names[j], 'age': codes[j]});
+
+  //2) sort:
+  list.sort(function(a, b) {
+      return ((a.name < b.name) ? -1 : ((a.name == b.name) ? 0 : 1));
+      //Sort could be modified to, for example, sort on the age 
+      // if the name is the same.
+  });
+
+  //3) separate them back out:
+  for (var k = 0; k < list.length; k++) {
+      names[k] = list[k].name;
+      codes[k] = list[k].age;
+  }
+}
 
 function searchcourse() {
   let element3 = document.getElementById("insidecouse");

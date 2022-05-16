@@ -64,8 +64,8 @@ function addReview(){
         console.log(apigClient)
         apigClient.reviewsReviewPost(params, body , {}).then(function(res){
             console.log(res);
-            alert("Hello! I am an alert box!!");
-            window.location.replace("/Users/bharath/Desktop/Stuff/SEM-2/CC/Project/GIT/NYU-Smart-Hub/Extra-info/review.html?q="+courseid);
+            // alert("Hello! I am an alert box!!");
+            window.location.replace("review.html?q="+courseid);
 
         }).catch(function(result){
             

@@ -15,12 +15,20 @@ const semester = urlParams.get('semester');
 fetch(`https://schedge.a1liu.com/${year}/${semester}/search?full=true&school=${school}&subject=${subject}&query=${coursename}`).then((res)=>{
   // Dynamically encapsulate html content in string and display in "details" id
   res.json().then(obj=>{
+
+    document.getElementById("coursename").innerHTML=obj[0]['name'];
+    document.getElementById("description").innerHTML=obj[0]['description'];
+    document.getElementById("credits").innerHTML=obj[0]["sections"][0]['maxUnits'];
+    document.getElementById("school").innerHTML=obj[0]['subjectCode']['school'];
+    document.getElementById("semester").innerHTML=semester;
+    document.getElementById("year").innerHTML=year;
+
     console.log(obj);
     const sections = obj[0]["sections"];
     let detailsHTML = `
       <div style="display: flex; justify-content: space-between">
         <div>
-          <h2>Sections:</h2>
+          <h2>Sections</h2>
         </div>
         <div>
           <a href="review.html?q=${courseid}">
@@ -92,15 +100,16 @@ var body={
   "Authorization":access_token
   }
 
-apigClient.coursesCourseGet(params, body , {}).then(function(res){
-  document.getElementById("coursename").innerHTML=res['data']['name'];
-  document.getElementById("recent_profs").innerHTML+=res['data']['recentprofessors'];
-  document.getElementById("description").innerHTML=res['data']['description'];
-  document.getElementById("credits").innerHTML=res['data']['credits'];
-  document.getElementById("school").innerHTML=res['data']['school'];
-}).catch(function(result){
-    console.log("NO RESULT");
-});
+// apigClient.coursesCourseGet(params, body , {}).then(function(res){
+//   document.getElementById("coursename").innerHTML=res['data']['name'];
+//   document.getElementById("description").innerHTML=res['data']['description'];
+//   document.getElementById("credits").innerHTML=res['data']['credits'];
+//   document.getElementById("school").innerHTML=res['data']['school'];
+//   document.getElementById("semester").innerHTML=res['data']['school'];
+//   document.getElementById("year").innerHTML=res['data']['school'];
+// }).catch(function(result){
+//     console.log("NO RESULT");
+// });
 
 
 // Add to wishlist

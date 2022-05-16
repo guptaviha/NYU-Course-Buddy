@@ -26,7 +26,7 @@ apigClient.coursesCourseGet(params, body , {}).then(function(res){
   console.log(res['data']);
   //coursename
   document.getElementById("coursename").innerHTML=res['data']['name'];
-  document.getElementById("recent_profs").innerHTML+=res['data']['recentprofessors'];
+  // document.getElementById("recent_profs").innerHTML+=res['data']['recentprofessors'];
   document.getElementById("description").innerHTML=res['data']['description'];
   document.getElementById("credits").innerHTML=res['data']['credits'];
   document.getElementById("school").innerHTML=res['data']['school'];
@@ -58,14 +58,20 @@ apigClient.reviewsGet(params, body , {}).then(function(res){
     var outerdiv=document.createElement("div");
     outerdiv.className = "card";
     outerdiv.id="outtter";
-    var innerdiv=document.createElement("div");
+
+    var innerdiv=document.createElement("span");
     innerdiv.className = "card-header";
-    innerdiv.innerHTML="Professor:-"+reviews[review]['professor']+", Rating: " +reviews[review]['quality'];
-    var pelement=document.createElement("p");
+    innerdiv.style.float = "right"
+    innerdiv.innerHTML="<b>Professor: </b>"+reviews[review]['professor']+", <b>Rating: </b>" +reviews[review]['quality'] + ", <b>Mandatory Attendance: </b>" +reviews[review]['mandatoryAttendance'] + ", <b>Grade: </b>" +reviews[review]['grade'] ;
+
+    var pelement=document.createElement("span");
+    pelement.style.float = "right"
     pelement.innerHTML=reviews[review]['createdTimestamp'].substring(0,10);
+
     var secondinnerdiv=document.createElement("div");
     secondinnerdiv.className = "card-body";
-    secondinnerdiv.innerHTML=""+reviews[review]['user']+" says, </br>"+reviews[review]['reviewtext'];
+    secondinnerdiv.innerHTML="User "+reviews[review]['user']+" says, </br>"+"\""+reviews[review]['reviewtext']+"\"";
+
     document.getElementById("reviews").appendChild(outerdiv).appendChild(innerdiv).appendChild(pelement);
     outerdiv.appendChild(secondinnerdiv);
     count+=1

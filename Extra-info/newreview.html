@@ -48,10 +48,11 @@
       <div class="col-8">
       <!-- Content Goes here -->
           <div class="container-fluid" style="margin-top:10px">
-            <h1>Hey!!!</h1>
+            <br>
+            <h2>Add New Review</h2>
+            <br>
 
-
-            <div class="card-body p-4">
+            <!-- <div class="card-body p-4">
               <div class="d-flex text-black">
                 <div class="flex-shrink-0">
                   <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
@@ -76,21 +77,17 @@
                       <p class="mb-0">8.5</p>
                     </div>
                   </div>
-                  <!-- <div class="d-flex pt-1">
-                    <button type="button" class="btn btn-outline-primary me-1 flex-grow-1">Chat</button>
-                    <button type="button" class="btn btn-primary flex-grow-1">Follow</button>
-                  </div> -->
                 </div>
               </div>
-            </div>
+            </div> -->
             
             <div class="card">
               <div class="card-header">
-                Add Review
+                <b>Review</b>
               </div>
               <div class="card-body">
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Proffesor</label>
+                    <label for="exampleFormControlInput1" class="form-label">Professor</label>
                     <input type="text" class="form-control" id="proffesor" placeholder="Bharath Chinthapanti">
                   </div>
                   <div class="mb-3">
@@ -99,8 +96,9 @@
                   </div>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="attendenace">
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Attendenace Required</label>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Attendance Required</label>
                   </div>
+                  <br>
                   <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Grade(0-100)</label>
                     <input type="number" type="range" min="0" max="100" class="form-control" id="grade" placeholder="0-100">
@@ -109,15 +107,9 @@
                     <label for="exampleFormControlTextarea1" class="form-label">Review</label>
                     <textarea class="form-control" id="reviewtext" rows="3"></textarea>
                   </div>
-                  <button type="button" class="btn btn-secondary" onclick="addReview()">Secondary</button>
+                  <button type="button" class="btn btn-success" onclick="addReview()">Submit</button>
                       </div>
             </div> 
-            
-          
-            
-
-           
-           
           </div> 
       </div>
       <div class="col">
