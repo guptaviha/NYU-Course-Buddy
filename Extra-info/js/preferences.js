@@ -1,29 +1,45 @@
+var queryString = window.location.hash;
+const urlParams = new URLSearchParams(queryString);
+const access_token = urlParams.get("#id_token");
+if(access_token==null){
+    access_token = localStorage.getItem("id_token");
+}else{
+    localStorage.setItem("id_token",access_token);
+}
+var params={
+    "Authorization":access_token
+    }
+var body={
+    "Authorization":access_token
+    }
+var apigClient = apigClientFactory.newClient({ });
+console.log(apigClient)
+apigClient.usersUserGet(params, body , {}).then(function(res){
+  
+  console.log(res["data"]);
+  userdata=res["data"];
+  if(userdata["school"]==="NAN"){
+    console.log("Not redirecting.");
+  }else{
+    window.location.replace("https://host-bucket-cloud.s3.us-east-1.amazonaws.com/Extra-info/homepage.html");
+  }
 
- var access_token="eyJraWQiOiIrRUlCVHBVTngyeGhcLzg3MEpSUEh0T2QzRUdlRU1wZG1EZ3UxTkpTMWptOD0iLCJhbGciOiJSUzI1NiJ9.eyJhdF9oYXNoIjoibGhzSmYxVkRmMkU1UWlqZ2hKODhCdyIsInN1YiI6IjI2OGU4YjhjLTAxOWQtNGExNC1iZWUxLTA2Y2QwZDE5Y2NjMiIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9MVDZmT1ZnQ2IiLCJjb2duaXRvOnVzZXJuYW1lIjoiYmMzMTc3IiwiYXVkIjoiNTU5YjF0Nm1scmtocnAyMHZvbjlxNHYyYWQiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTY1MjY1NTI4OSwiZXhwIjoxNjUyNjU4ODg5LCJpYXQiOjE2NTI2NTUyODksImp0aSI6IjIxMjRiOWQ3LWNlOGEtNDNlNC1hMTE2LWExNjNmZmZlNWU4YiIsImVtYWlsIjoiYmMzMTc3QG55dS5lZHUifQ.Z7Wxli3I7kIis2KfUKMlCjmimhz96KxaCZ6_Y_arO63fUouBnVMZ2EICsco7ciCFD3m_db1MV9NDbU1qaihZpImUqk6MnuTpdG8gIgSo6FAZ3yMSDziQ1D6YZOp8xfnRzMHCyoZRFO-vd-PBPgSG0b1FNMcugp6w-oRzR7C9aFe7XhUt2q1FfVCxPV02LW4AEuJ2-BYRMDXjbtRNkQ4WGq-THFV52ZL66jYa7jfRWjB_BD52Kkqo0UQG5KlkAMhS1pS_t0q5_m9XKatFBGNbDwW7sS_seTTlygR9ie2hELVgVrZUH6kswPKV_6Pk1QtGA1vHlrO5_EYs-73bC9OGIA";
- localStorage.setItem("id_token",access_token);
+  
+}).catch(function(result){
+    console.log("Error retrieving user data!");
+});
+
  let userdata={};
  let username='';
- var apigClient = apigClientFactory.newClient({ });
- var params={
-   "Authorization":access_token
- }
- var body={
-   "Authorization":access_token
- }
- console.log(body);
- apigClient.usersUserGet(params, body , {}).then(function(res){
-   
+ apigClient.usersUserGet(params, body , {}).then(function(res){ 
      userdata=res["data"];
      username=userdata['username'];
-     console.log(username);
-     //document.getElementById("username").innerHTML=username;
  }).catch(function(result){
      
-     console.log("NO RESULT");
+     console.log("Error getting user data");
  });
 
 //schools
-
 apigClient.schoolsGet(params, {} , {}).then(function(res){
     
     let schools = Object.keys(res['data']);
@@ -140,9 +156,5 @@ function schoolChange(){
         
         console.log("NO RESULT");
     });
-
-  
-
-  
 
 }
