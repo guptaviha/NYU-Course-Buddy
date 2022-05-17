@@ -52,6 +52,7 @@ apigClient.whishlistGet(params, body , {}).then(function(res){
     '<a href ="'+ 'review.html?q=' + coursedata[course]['courseid'] 
     + '" class="list-group-item list-group-item-action">' 
     + coursedata[course]['name'] + "  - " + semesterLOV[coursedata[course]['semester']] + " " + coursedata[course]['year']
+    + " - " + coursedata[course]["lastStatus"]
     + '</a>' 
 /*    var li = document.createElement("li");
     li.className = "list-group-item";
