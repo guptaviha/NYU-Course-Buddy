@@ -47,19 +47,24 @@ apigClient.schoolsGet(params, {} , {}).then(function(res) {
 //Whislist
 apigClient.whishlistGet(params, body , {}).then(function(res){
   var coursedata=res["data"];
+  
   for(const course in coursedata){
     document.getElementById('wishlist-items').innerHTML += 
     '<a href ="'+ 'review.html?q=' + coursedata[course]['courseid'] 
     + '" class="list-group-item list-group-item-action">' 
     + coursedata[course]['name'] + "  - " + semesterLOV[coursedata[course]['semester']] + " " + coursedata[course]['year']
     + " - " + coursedata[course]["lastStatus"]
-    + '</a>' 
+    + '</a>'+' <button class="btn btn-primary"><a href="deletewhislist.html?courseid='+coursedata[course]['courseid']+'&school='+coursedata[course]['school']+'&program='+coursedata[course]['program']+'&section='+coursedata[course]['section']+'&year='+coursedata[course]['year']+'">Delete</a></button> '
+     
+    document.getElementById('wishlist-items').style.width="200px";
 /*    var li = document.createElement("li");
     li.className = "list-group-item";
     li.innerHTML=coursedata[course]['name'];
     document.getElementById("wishlist-items").appendChild(li);*/
   }
 }).catch(function(result){
+  console.log("Error!");
+
 });
 
 
