@@ -80,7 +80,7 @@ fetch(`https://schedge.a1liu.com/${year}/${semester}/search?full=true&school=${s
           </div>
           <div>
             <button type="button" class="btn btn-success" onclick="addWishlist('${sections[i]["code"]}', '${sections[i]["status"]}', '${sections[i]["name"]}')">+ Wishlist</button>
-            <button type="button" class="btn btn-danger" onclick="removeWishlist('${sections[i]["code"]}')">- Wishlist</button>
+            <button type="button" class="btn btn-danger" onclick="removeWishlist('${sections[i]["code"]}', '${sections[i]["name"]}')">- Wishlist</button>
           </div>
         </div>
 
@@ -136,7 +136,7 @@ function addWishlist(section, status, sectionname){
     }
   var body={
     "Authorization":access_token,
-    "courseid":courseid+ext,
+    "courseid":encodeURIComponent(courseid+ext),
     "section": section,
     "year": year,
     "semester": semester,
@@ -159,10 +159,21 @@ function addWishlist(section, status, sectionname){
 }
 
 // Remove from wishlist
-function removeWishlist(section){
+function removeWishlist(section, sectionname){
+  // check for special case:
+  ext="";
+  if (courseid == 'CS-GY-9223'){
+    console.log("sectionname", sectionname)
+    ext=sectionname.split(" ").map((word)=>word[0]).join("")
+    console.log("ext", ext)
+    // courseid=courseid+ext
+  }
+  console.log("courseid+ext", courseid+ext)
+  //'SELECTED TOPICS IN CS CLOUD COMPUTING' => STICCC
+
   var params={
     "Authorization":access_token,
-    "courseid":courseid,
+    "courseid":encodeURIComponent(courseid+ext),
     "section": section,
     "year": year,
     "program": subject,
