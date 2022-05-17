@@ -9,18 +9,50 @@ const year = urlParams.get('year');
 const coursename = urlParams.get('name');
 const semester = urlParams.get('semester');
 
+var params={
+  "Authorization":access_token,
+  "courseID":courseid
+  }
+
+var body={
+  "Authorization":access_token
+  }
+
+let semesterLOV = { "fa":"Fall","sp":"Spring","su":"Summer","ja":"Winter"}
+var apigClient = apigClientFactory.newClient({ });
+
+function reverseMapping(obj){
+  var ret = {};
+  for(var key in obj){
+    ret[obj[key]] = key;
+    }
+  console.log("ret", ret)
+  return ret;
+  
+  }
+
 fetch(`https://schedge.a1liu.com/${year}/${semester}/search?full=true&school=${school}&subject=${subject}&query=${coursename}`).then((res)=>{
   // Dynamically encapsulate html content in string and display in "details" id
   res.json().then(obj=>{
 
-    document.getElementById("coursename").innerHTML=obj[0]['name'];
-    document.getElementById("description").innerHTML=obj[0]['description'];
-    document.getElementById("credits").innerHTML=obj[0]["sections"][0]['maxUnits'];
-    document.getElementById("school").innerHTML=obj[0]['subjectCode']['school'];
-    document.getElementById("semester").innerHTML=semester;
-    document.getElementById("year").innerHTML=year;
+    schoolname = ""
+    apigClient.schoolsGet(params, {} , {}).then(function(res) {
+      schools = res['data'];
+      schools = reverseMapping(schools)
+      schoolname = schools[school]
 
-    console.log(obj);
+      document.getElementById("coursename").innerHTML=obj[0]['name'];
+      document.getElementById("description").innerHTML=obj[0]['description'];
+      document.getElementById("credits").innerHTML=obj[0]["sections"][0]['maxUnits'];
+      document.getElementById("school").innerHTML=schoolname;
+      document.getElementById("semester").innerHTML=semesterLOV[semester];
+      document.getElementById("year").innerHTML=year;
+
+    }).catch(function(error){
+      console.log(error);
+    })
+
+
     const sections = obj[0]["sections"];
     let detailsHTML = `
       <div style="display: flex; justify-content: space-between">
@@ -82,16 +114,9 @@ fetch(`https://schedge.a1liu.com/${year}/${semester}/search?full=true&school=${s
   })
 })
 
-var apigClient = apigClientFactory.newClient({ });
 
-var params={
-  "Authorization":access_token,
-  "courseID":courseid
-  }
 
-var body={
-  "Authorization":access_token
-  }
+
 
 // Add to wishlist
 function addWishlist(section, status, sectionname){
