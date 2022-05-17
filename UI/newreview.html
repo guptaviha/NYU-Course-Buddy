@@ -34,7 +34,7 @@
         <a class="nav-link" href="coursesearch.html">Course Search</a>
         <a class="nav-link active" href="coursereviews.html" aria-current="page">Course Reviews</a>
         <a class="nav-link" href="preferences.html">Preferences</a>
-        <a class="nav-link" href="https://cloudproj.auth.us-east-1.amazoncognito.com/logout?client_id=559b1t6mlrkhrp20von9q4v2ad&logout_uri=https://host-bucket-cloud.s3.us-east-1.amazonaws.com/Extra-info/landing.html">Logout</a>
+        <a class="nav-link" href="https://cloudproj.auth.us-east-1.amazoncognito.com/logout?client_id=559b1t6mlrkhrp20von9q4v2ad&logout_uri=https://host-bucket-cloud.s3.us-east-1.amazonaws.com/UI/landing.html">Logout</a>
       </div>
     </div>
   </div>
@@ -47,53 +47,70 @@
       </div>
       <div class="col-8">
       <!-- Content Goes here -->
-        <div class="container-fluid" style="margin-top:10px">
-          <br>
-          <h2>Review Search</h2>
-          <br>
-          
-          <div class="card">
-            <div class="card-header text-white" style="background-color: #3D69FF;">
-              <b>Search</b>
-            </div>
-            <div class="card-body">
-            </br>
-            <div id="drp" onchange="funct()"></div>
-            <p id="schoolz" hidden></p>
+          <div class="container-fluid" style="margin-top:10px">
+            <br>
+            <h2>Add New Review</h2>
+            <br>
 
-            </br>
-            <div id="drppr" onchange="funcprogram()"></div>
-            <p id="programz" hidden></p>
-            </br>
-            <button type="button" class="btn btn-primary" onclick="searchcourse()" href="#results-section" >Search</button>
-            </div>
+            <!-- <div class="card-body p-4">
+              <div class="d-flex text-black">
+                <div class="flex-shrink-0">
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                    alt="Generic placeholder image" class="img-fluid"
+                    style="width: 180px; border-radius: 10px;">
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <h5 class="mb-1" id="username">Name</h5>
+                  <p class="mb-2 pb-1" style="color: #2b2a2a;" id="program">Senior Journalist</p>
+                  <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
+                    style="background-color: #efefef;">
+                    <div>
+                      <p class="small text-muted mb-1">Sem</p>
+                      <p class="mb-0" id="semester">41</p>
+                    </div>
+                    <div class="px-3">
+                      <p class="small text-muted mb-1">School</p>
+                      <p class="mb-0" id="school">976</p>
+                    </div>
+                    <div>
+                      <p class="small text-muted mb-1">GPA</p>
+                      <p class="mb-0">8.5</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            
+            <div class="card">
+              <div class="card-header">
+                <b>Review</b>
+              </div>
+              <div class="card-body">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Professor</label>
+                    <input type="text" class="form-control" id="proffesor" placeholder="Bharath Chinthapanti">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Overall Rating(Out of 5)</label>
+                    <input type="number" type="range" min="0" max="5" class="form-control" id="quality" placeholder="0-5">
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="attendenace">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Attendance Required</label>
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Grade(0-100)</label>
+                    <input type="number" type="range" min="0" max="100" class="form-control" id="grade" placeholder="0-100">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Review</label>
+                    <textarea class="form-control" id="reviewtext" rows="3"></textarea>
+                  </div>
+                  <button type="button" class="btn btn-success" onclick="addReview()">Submit</button>
+                      </div>
+            </div> 
           </div> 
-          <hr>
-          
-          <div id="results-section" style="display:none">
-            <div id="search-bar" class="input-group" >
-              <input id="filter" type="search" class="form-control rounded" placeholder="Search Results" aria-label="Search" aria-describedby="search-addon" />
-              <button type="button" class="btn btn-outline-primary" onclick="search()">search</button>
-            </div>
-
-            <ul id="result-list" class="list-group">
-              </br>
-              <li class="list-group-item text-white" style="background-color: #3D69FF;" aria-disabled="true">
-                <b>Results</b>
-              </li>
-              <div id="insidecouse"></div>
-            </ul>
-          </div>
-
-          <!-- <div id="landher"></div>
-          <ul class="list-group">
-          </br>
-            <li class="list-group-item text-white" style="background-color: #3D69FF;" aria-disabled="true"><b>Results</b></li>
-            <div id="insidecouse"></div>
-          </ul> -->
-
-
-        </div> 
       </div>
       <div class="col">
       </div>
@@ -113,6 +130,6 @@
   </footer>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>  
-  <script src="js/coursereviews.js"></script>
+  <script src="js/newreview.js"></script>
 </body>
 </html>

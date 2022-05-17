@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Open Course Search</title>
+  <title>Home NYU Course Buddy</title>
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> 
   
@@ -19,10 +19,7 @@
   <script type="text/javascript" src="js/apiGateway-js-sdk/lib/apiGatewayCore/simpleHttpClient.js"></script>
   <script type="text/javascript" src="js/apiGateway-js-sdk/lib/apiGatewayCore/utils.js"></script>
 </head>
-<script>
 
-  
-</script>
 <body>
   <!-- Navbar -->
   <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
@@ -33,12 +30,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="homepage.html">Home</a>
+        <a class="nav-link active" href="homepage.html" aria-current="page">Home</a>
         <a class="nav-link" href="dashboard.html">Dashboard</a>
         <a class="nav-link" href="coursesearch.html">Course Search</a>
-        <a class="nav-link active" href="coursereviews.html" aria-current="page">Course Reviews</a>
+        <a class="nav-link" href="coursereviews.html">Course Reviews</a>
         <a class="nav-link" href="preferences.html">Preferences</a>
-        <a class="nav-link" href="https://cloudproj.auth.us-east-1.amazoncognito.com/logout?client_id=559b1t6mlrkhrp20von9q4v2ad&logout_uri=https://host-bucket-cloud.s3.us-east-1.amazonaws.com/Extra-info/landing.html">Logout</a>
+        <a class="nav-link" href="https://cloudproj.auth.us-east-1.amazoncognito.com/logout?client_id=559b1t6mlrkhrp20von9q4v2ad&logout_uri=https://host-bucket-cloud.s3.us-east-1.amazonaws.com/UI/landing.html">Logout</a>
       </div>
     </div>
   </div>
@@ -51,54 +48,26 @@
       </div>
       <div class="col-8">
       <!-- Content Goes here -->
-        <div class="container-fluid" style="margin-top:10px">
-          <br>
-          <h2>Review Details</h2>
-
-          <div class="card-body p-4">
-            <h5 class="mb-1" id="coursename">Course Name</h5>
-            <p class="mb-2 pb-1" style="color: #2b2a2a;" id="description">Description</p>
-            <div class="d-flex justify-content-start rounded-3 p-2 mb-2"
-              style="background-color: #efefef;">
-              <div>
-                <p class="small text-muted mb-1">Credits</p>
-                <p class="mb-0" id="credits">N/A</p>
-              </div>
-              <div class="px-3">
-                <p class="small text-muted mb-1">School</p>
-                <p class="mb-0" id="school">N/A</p>
-              </div>
-              <div>
-                <p class="small text-muted mb-1">Overall Rating</p>
-                <p class="mb-0" id="overall-rating">N/A</p>
-              </div>
-            </div>
-          </div>
-
-          <button type="button" class="btn btn-success" style="float: right;" id="button_for_new_review" onclick="addreview()">+ New Review</button>
-
-          <h2>Reviews</h2>
-          <div id="reviews"></div>
-
-        </div> 
+          
       </div>
-      <div class="col"></div>
+      <div class="col">
+      </div>
     </div>
   </div>
   
   <!-- Footer -->
-  <div class="container">
+  <div class="container ">
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <div class="col-md-4 d-flex align-items-center">
       <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
         <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
       </a>
-      <span class="text-muted">© 2022 NYU CS-GY-9223 Cloud Computing </span>
+      <span class="text-muted">© 2021 NYU CS-GY-9223 Cloud Computing </span>
     </div>
     <a href="chatbot/chat.html" class="btn btn-primary" role="button">Chatbot Helper</a>
   </footer>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>  
-  <script src="js/review.js"></script>
+  <script src="js/deletedwhislist.js"></script>
 </body>
 </html>

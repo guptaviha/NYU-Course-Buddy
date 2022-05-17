@@ -24,7 +24,7 @@ apigClient.usersUserGet(params, body , {}).then(function(res) {
   username=userdata['username'];
   if(userdata["school"]==="NAN"){
   }else{
-    //window.location.replace("https://host-bucket-cloud.s3.us-east-1.amazonaws.com/Extra-info/homepage.html");
+    //window.location.replace("https://host-bucket-cloud.s3.us-east-1.amazonaws.com/UI/homepage.html");
   }
   document.getElementById("username").innerHTML = userdata['studentname']
 }).catch(function(result){
@@ -136,7 +136,7 @@ function schoolChange(){
     
     var additionalParams = {};
     apigClient.rootPost(params, body , additionalParams).then(function(res){
-      window.location.replace("/Users/bharath/Desktop/Stuff/SEM-2/CC/Project/GIT/NYU-Smart-Hub/Extra-info/dashboard.html");
+      window.location.replace("https://host-bucket-cloud.s3.us-east-1.amazonaws.com/UI/dashboard.html");
     }).catch(function(result){
     });
 
