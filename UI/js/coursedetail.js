@@ -121,11 +121,14 @@ fetch(`https://schedge.a1liu.com/${year}/${semester}/search?full=true&school=${s
 // Add to wishlist
 function addWishlist(section, status, sectionname){
   // check for special case:
+  ext="";
   if (courseid == 'CS-GY-9223'){
+    console.log("sectionname", sectionname)
     ext=sectionname.split(" ").map((word)=>word[0]).join("")
-    // console.log("ext", ext)
-    courseid=courseid+ext
+    console.log("ext", ext)
+    // courseid=courseid+ext
   }
+  console.log("courseid+ext", courseid+ext)
   //'SELECTED TOPICS IN CS CLOUD COMPUTING' => STICCC
 
   var params={
@@ -133,7 +136,7 @@ function addWishlist(section, status, sectionname){
     }
   var body={
     "Authorization":access_token,
-    "courseid":courseid,
+    "courseid":courseid+ext,
     "section": section,
     "year": year,
     "semester": semester,
