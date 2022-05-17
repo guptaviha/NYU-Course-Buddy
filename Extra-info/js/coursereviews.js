@@ -114,6 +114,9 @@ apigClient.schoolsProgramsGet(params, {} , {}).then(function(res){
 let coursedata={}
 
 function searchcourse(){
+
+  document.getElementById("results-section").style.display="block";
+
   let element3 = document.getElementById("insidecouse");
   while (element3.firstChild) {
     element3.removeChild(element3.firstChild);

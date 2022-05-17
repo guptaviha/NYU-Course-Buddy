@@ -65,17 +65,34 @@
             <div id="drppr" onchange="funcprogram()"></div>
             <p id="programz" hidden></p>
             </br>
-            <button type="button" class="btn btn-primary" onclick="searchcourse()" href="#landher" >Search</button>
+            <button type="button" class="btn btn-primary" onclick="searchcourse()" href="#results-section" >Search</button>
             </div>
           </div> 
+          <hr>
           
-        
-          <div id="landher"></div>
+          <div id="results-section" style="display:none">
+            <div id="search-bar" class="input-group" >
+              <input type="search" class="form-control rounded" placeholder="Search Results" aria-label="Search" aria-describedby="search-addon" />
+              <button type="button" class="btn btn-outline-primary">search</button>
+            </div>
+
+            <ul id="result-list" class="list-group">
+              </br>
+              <li class="list-group-item text-white" style="background-color: #3D69FF;" aria-disabled="true">
+                <b>Results</b>
+              </li>
+              <div id="insidecouse"></div>
+            </ul>
+          </div>
+
+          <!-- <div id="landher"></div>
           <ul class="list-group">
           </br>
             <li class="list-group-item text-white" style="background-color: #3D69FF;" aria-disabled="true"><b>Results</b></li>
             <div id="insidecouse"></div>
-          </ul>
+          </ul> -->
+
+
         </div> 
       </div>
       <div class="col">

@@ -9,6 +9,8 @@ var body = {
   "Authorization": access_token
 }
 
+let results = []
+
 var apigClient = apigClientFactory.newClient({});
 
 apigClient.usersUserGet(params, body, {}).then(function (res) {
@@ -135,6 +137,40 @@ function sortLists(names,codes) {
   }
 }
 
+function search() {
+  let filter = document.getElementById("filter").value;
+  // let results = document.getElementById("insidecouse");
+  const filteredResults = results.filter((course)=>{
+    if (course['name'].includes(filter)){
+      return true;
+    }
+    return false;
+  });
+  generateList(filteredResults);
+  
+}
+
+function generateList(courses){
+
+  document.getElementById("insidecouse").innerHTML="";
+  for (i in courses){
+    // console.log(courses[i]);
+    var li = document.createElement("li");
+    li.className = "list-group-item";
+    li.innerHTML = courses[i]['name'];
+    // console.log(courses[i]['name']);
+
+    var anchor = document.createElement("a");
+    anchor.href = "coursedetail.html?" + courses[i]['parameters'];
+    anchor.style.textDecoration = "none";
+    anchor.appendChild(li);
+
+    document.getElementById("insidecouse").appendChild(anchor);
+  }
+
+}
+
+
 function searchcourse() {
 
   document.getElementById("results-section").style.display="block";
@@ -157,21 +193,23 @@ function searchcourse() {
     "semester": semester
   }
   
+
   apigClient.searchGet(params, {}, {}).then(function (res) {
     coursedata = res['data'];
 
     for (const course in coursedata) {
-      var li = document.createElement("li");
-      li.className = "list-group-item";
-      li.innerHTML = coursedata[course]['name'];
-      var anchor = document.createElement("a");
-      const courseID = `${subject}-${school}-${coursedata[course]["deptCourseId"]}`  
+
+      const courseID = `${subject}-${school}-${coursedata[course]["deptCourseId"]}`;
       const parameters = `school=${school}&subject=${subject}&year=${year}&semester=${semester}&name=${coursedata[course]["name"]}&courseid=${courseID}`;
-      anchor.href = "coursedetail.html?" + parameters;
-      anchor.style.textDecoration = "none";
-      anchor.appendChild(li);
-      document.getElementById("insidecouse").appendChild(anchor);
+
+      results.push({
+        name: coursedata[course]['name'],
+        parameters: parameters
+      })
     }
+    console.log(results)
+    generateList(results)
+    // results = document.getElementById("insidecouse").innerHTML;
   }).catch(function (error) {
     console.log(error);
   });
