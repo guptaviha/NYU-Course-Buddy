@@ -25,25 +25,27 @@ apigClient.usersUserGet(params, body , {}).then(function(res){
 
 apigClient.schoolsGet(params, {} , {}).then(function(res){
   var schools = Object.keys(res['data']);
-  var codes=Object.values(res['data'])
+  var codes = Object.values(res['data']);
+  const sortedSchools = sortLists(schools,codes);
+
   var select = document.createElement("select");
   select.name = "schools";
   select.id = "schoollist"
-  for (const val of schools){
+  for (const school of sortedSchools) {
     var option = document.createElement("option");
-    option.value = val+" - "+res['data'][val];
-    option.text = val.charAt(0).toUpperCase() + val.slice(1);
+    option.value = school.name + " - " + school.code;
+    option.text = school.name;
     select.appendChild(option);
   }
   var label = document.createElement("label");
   label.innerHTML = "School "
   label.htmlFor = "schools";
   document.getElementById("drp").appendChild(label).appendChild(select);
-  document.getElementById('schoolz').innerHTML=document.getElementById("schoollist").value;
-  params={
-    "Authorization": access_token,
-    "school": document.getElementById("schoolz").innerHTML.slice(-2)
-  }  
+  document.getElementById('schoolz').innerHTML = document.getElementById("schoollist").value;
+  // params = {
+  //   "Authorization": access_token,
+  //   "school": document.getElementById("schoolz").innerHTML.slice(-2)
+  // }
 }).catch(function(error){
     console.log(error);
 });
@@ -70,9 +72,11 @@ function funct(){
   }
 
   apigClient.schoolsProgramsGet(params, {} , {}).then(function(res){
-    values={}; 
-    values = res['data'];
-    values_codes=Object.keys(res['data']);
+    // values = res['data'];
+    // values_codes = Object.keys(res['data'])
+    subjects = Object.values(res['data'])
+    subjectcodes = Object.keys(res['data'])
+    console.log(values)
     funcpr();
     }).catch(function(error){
         console.log(error);
@@ -84,15 +88,18 @@ function funcprogram(){
   document.getElementById('programz').innerHTML=document.getElementById("programlist").value; 
 }
 
+let subjects = []
+let subjectcodes = []
+
 function funcpr(){
   var select = document.createElement("select");
   select.name = "programs";
   select.id = "programlist"
-
-  for (const val of values_codes){
+  sortedSubjects = sortLists(subjects,subjectcodes)
+  for (const subject of sortedSubjects) {
     var option = document.createElement("option");
-    option.value = val;
-    option.text = values[val].charAt(0).toUpperCase() + values[val].slice(1);
+    option.value = subject.code;
+    option.text = subject.name;
     select.appendChild(option);
   }
 
@@ -105,10 +112,12 @@ function funcpr(){
 }
 
 apigClient.schoolsProgramsGet(params, {} , {}).then(function(res){
-  
-  values=res['data'];
-  values_codes=Object.keys(res['data'])
-  funcpr(); 
+  // values = res['data'];
+  // values_codes = Object.keys(res['data'])
+  subjects = Object.values(res['data'])
+  subjectcodes = Object.keys(res['data'])
+  console.log(values)
+  funcpr();
   }).catch(function(error){
       console.log(error);
   });
@@ -119,7 +128,7 @@ function sortLists(names,codes) {
   //1) combine the arrays:
   var list = [];
   for (var j = 0; j < names.length; j++) 
-      list.push({'name': names[j], 'age': codes[j]});
+      list.push({'name': names[j], 'code': codes[j]});
 
   //2) sort:
   list.sort(function(a, b) {
@@ -129,10 +138,11 @@ function sortLists(names,codes) {
   });
 
   //3) separate them back out:
-  for (var k = 0; k < list.length; k++) {
-      names[k] = list[k].name;
-      codes[k] = list[k].age;
-  }
+  // for (var k = 0; k < list.length; k++) {
+  //     names[k] = list[k].name;
+  //     codes[k] = list[k].code;
+  // }
+  return list
 }
 
 function search() {
@@ -170,6 +180,7 @@ function generateList(courses){
 
 function searchcourse(){
 
+  results = []
   document.getElementById("results-section").style.display="block";
 
   let element3 = document.getElementById("insidecouse");
