@@ -7,7 +7,7 @@ var body={
     "Authorization":access_token
     }
 var apigClient = apigClientFactory.newClient({ });
-
+let semesterLOV = { "fa":"Fall","sp":"Spring","su":"Summer","ja":"Winter"}
 let schools = {}
 apigClient.schoolsGet(params, {} , {}).then(function(res) {
         schools = res['data'];
@@ -29,7 +29,7 @@ apigClient.schoolsGet(params, {} , {}).then(function(res) {
           });
           document.getElementById("username1").innerHTML=userdata["studentname"];
           document.getElementById("school").innerHTML=schools[userdata["school"]];
-          document.getElementById("semester").innerHTML=userdata["semester"];
+          document.getElementById("semester").innerHTML=semesterLOV[userdata["semester"]];
           document.getElementById("year").innerHTML=userdata["year"];
         
       }).catch(function(result){
@@ -48,7 +48,11 @@ apigClient.schoolsGet(params, {} , {}).then(function(res) {
 apigClient.whishlistGet(params, body , {}).then(function(res){
   var coursedata=res["data"];
   for(const course in coursedata){
-    document.getElementById('wishlist-items').innerHTML += '<a href ="'+ 'review.html?q=' + coursedata[course]['courseid'] + '" class="list-group-item list-group-item-action">' + coursedata[course]['name'] + '</a>' 
+    document.getElementById('wishlist-items').innerHTML += 
+    '<a href ="'+ 'review.html?q=' + coursedata[course]['courseid'] 
+    + '" class="list-group-item list-group-item-action">' 
+    + coursedata[course]['name'] + "  - " + semesterLOV[coursedata[course]['semester']] + " " + coursedata[course]['year']
+    + '</a>' 
 /*    var li = document.createElement("li");
     li.className = "list-group-item";
     li.innerHTML=coursedata[course]['name'];
