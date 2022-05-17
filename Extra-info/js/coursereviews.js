@@ -30,6 +30,7 @@ apigClient.schoolsGet(params, {} , {}).then(function(res){
 
   var select = document.createElement("select");
   select.name = "schools";
+  select.className="form-select";
   select.id = "schoollist"
   for (const school of sortedSchools) {
     var option = document.createElement("option");
