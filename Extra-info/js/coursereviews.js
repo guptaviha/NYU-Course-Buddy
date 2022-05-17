@@ -9,6 +9,8 @@ var body={
   "Authorization":access_token
   }
 
+let results = []
+
 var apigClient = apigClientFactory.newClient({ });
 
 apigClient.usersUserGet(params, body , {}).then(function(res){
@@ -111,7 +113,60 @@ apigClient.schoolsProgramsGet(params, {} , {}).then(function(res){
       console.log(error);
   });
 
-let coursedata={}
+let coursedata = {}
+
+function sortLists(names,codes) {
+  //1) combine the arrays:
+  var list = [];
+  for (var j = 0; j < names.length; j++) 
+      list.push({'name': names[j], 'age': codes[j]});
+
+  //2) sort:
+  list.sort(function(a, b) {
+      return ((a.name < b.name) ? -1 : ((a.name == b.name) ? 0 : 1));
+      //Sort could be modified to, for example, sort on the age 
+      // if the name is the same.
+  });
+
+  //3) separate them back out:
+  for (var k = 0; k < list.length; k++) {
+      names[k] = list[k].name;
+      codes[k] = list[k].age;
+  }
+}
+
+function search() {
+  let filter = document.getElementById("filter").value;
+  // let results = document.getElementById("insidecouse");
+  const filteredResults = results.filter((course)=>{
+    if (course['name'].includes(filter)){
+      return true;
+    }
+    return false;
+  });
+  generateList(filteredResults);
+  
+}
+
+function generateList(courses){
+
+  document.getElementById("insidecouse").innerHTML="";
+
+  for (i in courses){
+
+    var li = document.createElement("li");
+    li.className = "list-group-item";
+    li.innerHTML=courses[i]['name'];
+
+    var anchor = document.createElement("a");
+    anchor.href="review.html?q="+courses[i]['parameters'];
+    anchor.style.textDecoration="none";
+    anchor.appendChild(li);
+
+    document.getElementById("insidecouse").appendChild(anchor);
+  }
+
+}
 
 function searchcourse(){
 
@@ -121,26 +176,27 @@ function searchcourse(){
   while (element3.firstChild) {
     element3.removeChild(element3.firstChild);
   }
+
+  school=document.getElementById('schoolz').innerHTML
+  program= document.getElementById('programz').innerHTML;
+
   params={
     "Authorization": access_token,
     "school": document.getElementById("schoolz").innerHTML.slice(-2),
     "program": document.getElementById('programz').innerHTML
   }
-  school=document.getElementById('schoolz').innerHTML
-  program= document.getElementById('programz').innerHTML;
+
 
   apigClient.coursesGet(params, {} , {}).then(function(res){
     coursedata=res['data'];
     for(const course in coursedata){
-      var li = document.createElement("li");
-      li.className = "list-group-item";
-      li.innerHTML=coursedata[course]['name'];
-      var anchor = document.createElement("a");
-      anchor.href="review.html?q="+coursedata[course]['id'];
-      anchor.style.textDecoration="none";
-      anchor.appendChild(li);
-      document.getElementById("insidecouse").appendChild(anchor);
+      results.push({
+        name: coursedata[course]['name'],
+        parameters: coursedata[course]['id']
+      })
     }
+    console.log(results)
+    generateList(results)
   }).catch(function(error){
       console.log(error);
   });
