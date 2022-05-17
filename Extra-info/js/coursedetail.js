@@ -2,7 +2,7 @@
 var access_token = localStorage.getItem("id_token");
 var queryString_url = window.location.search;
 const urlParams = new URLSearchParams(queryString_url);
-const courseid = urlParams.get('courseid');
+var courseid = urlParams.get('courseid');
 const school = urlParams.get('school');
 const subject = urlParams.get('subject');
 const year = urlParams.get('year');
@@ -42,7 +42,7 @@ fetch(`https://schedge.a1liu.com/${year}/${semester}/search?full=true&school=${s
       schoolname = schools[school]
 
       document.getElementById("coursename").innerHTML=obj[0]['name'];
-      document.getElementById("description").innerHTML=obj[0]['description'];
+      document.getElementById("description").innerHTML=obj[0]['description'] ? obj[0]['description'] : null;
       document.getElementById("credits").innerHTML=obj[0]["sections"][0]['maxUnits'];
       document.getElementById("school").innerHTML=schoolname;
       document.getElementById("semester").innerHTML=semesterLOV[semester];
@@ -120,6 +120,14 @@ fetch(`https://schedge.a1liu.com/${year}/${semester}/search?full=true&school=${s
 
 // Add to wishlist
 function addWishlist(section, status, sectionname){
+  // check for special case:
+  if (courseid == 'CS-GY-9223'){
+    ext=sectionname.split(" ").map((word)=>word[0]).join("")
+    // console.log("ext", ext)
+    courseid=courseid+ext
+  }
+  //'SELECTED TOPICS IN CS CLOUD COMPUTING' => STICCC
+
   var params={
     "Authorization":access_token
     }
@@ -137,9 +145,9 @@ function addWishlist(section, status, sectionname){
   apigClient.whishlistPost(params, body , {}).then(function(res){
     if (res.status == 200) {
       document.getElementById("toast-message").innerHTML=res.data;
-      document.getElementById("my-toast").style = "position: fixed; top: 80px; right: 20px; display:block; opacity:1; transition:all 0.6s;";
+      document.getElementById("my-toast").style = "position: fixed; top: 80px; right: 20px; display:block; opacity:1; transition:all 0.6s; z-index:1;";
       setTimeout(()=>{
-        document.getElementById("my-toast").style = "position: fixed; top: 80px; right: 20px; display:block; opacity:0; transition:all 0.6s;";
+        document.getElementById("my-toast").style = "position: fixed; top: 80px; right: 20px; display:block; opacity:0; transition:all 0.6s; z-index:1;";
       },6000)
     }
   }).catch(function(error){
