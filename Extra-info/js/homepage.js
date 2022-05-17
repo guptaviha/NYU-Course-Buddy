@@ -54,9 +54,19 @@ apigClient.whishlistGet(params, body , {}).then(function(res){
     + '" class="list-group-item list-group-item-action">' 
     + coursedata[course]['name'] + "  - " + semesterLOV[coursedata[course]['semester']] + " " + coursedata[course]['year']
     + " - " + coursedata[course]["lastStatus"]
-    + '</a>'+' <button class="btn btn-primary"><a href="deletewhislist.html?courseid='+coursedata[course]['courseid']+'&school='+coursedata[course]['school']+'&program='+coursedata[course]['program']+'&section='+coursedata[course]['section']+'&year='+coursedata[course]['year']+'">Delete</a></button> '
+    + '</a></br>'//+'<button class="class="btn btn-primary" ><a href="deletewhislist.html?courseid='+coursedata[course]['courseid']+'&school='+coursedata[course]['school']+'&program='+coursedata[course]['program']+'&section='+coursedata[course]['section']+'&year='+coursedata[course]['year']+'">Delete</a><button>'
+    document.getElementById('wishlist-items').style.width="800px"; 
+    document.getElementById('wishlist-items').style.float="left"; 
+
+    var button=document.createElement("button");
+     button.id="outerbutton";
+     button.innerHTML="Delete";
+     button.style.width="200px";
+     button.style.float="right";
+     var anchor=document.createElement("a");
+     access_token.href="deletewhislist.html?courseid='+coursedata[course]['courseid']+'&school='+coursedata[course]['school']+'&program='+coursedata[course]['program']+'&section='+coursedata[course]['section']+'&year='+coursedata[course]['year']+'";
+     document.getElementById('wishlist-items').appendChild(button).appendChild(anchor);
      
-    document.getElementById('wishlist-items').style.width="200px";
 /*    var li = document.createElement("li");
     li.className = "list-group-item";
     li.innerHTML=coursedata[course]['name'];
