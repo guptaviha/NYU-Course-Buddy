@@ -28,6 +28,7 @@ apigClient.schoolsGet(params, {} , {}).then(function(res){
   var codes=Object.values(res['data'])
   var select = document.createElement("select");
   select.name = "schools";
+  select.className="form-select";
   select.id = "schoollist"
   for (const val of schools){
     var option = document.createElement("option");
@@ -88,7 +89,7 @@ function funcpr(){
   var select = document.createElement("select");
   select.name = "programs";
   select.id = "programlist"
-
+  select.className="form-select";
   for (const val of values_codes){
     var option = document.createElement("option");
     option.value = val;
