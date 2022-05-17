@@ -17,13 +17,37 @@ var body={
   "Authorization":access_token
   }
 
+function reverseMapping(obj){
+  var ret = {};
+  for(var key in obj){
+    ret[obj[key]] = key;
+    }
+  console.log("ret", ret)
+  return ret;
+  
+  }
+
 var apigClient = apigClientFactory.newClient({ });
 
 apigClient.coursesCourseGet(params, body , {}).then(function(res){
-  document.getElementById("coursename").innerHTML=res['data']['name'];
-  document.getElementById("description").innerHTML=res['data']['description'];
-  document.getElementById("credits").innerHTML=res['data']['credits'];
-  document.getElementById("school").innerHTML=res['data']['school'];
+
+  schoolcode = res['data']['school']
+  schoolname = ""
+
+  apigClient.schoolsGet(params, {} , {}).then(function(obj) {
+    schools = obj['data'];
+    schools = reverseMapping(schools)
+    schoolname = schools[schoolcode]
+
+    document.getElementById("coursename").innerHTML=res['data']['name'];
+    document.getElementById("description").innerHTML=res['data']['description'];
+    document.getElementById("credits").innerHTML=res['data']['credits'];
+    document.getElementById("school").innerHTML=schoolname;
+
+  }).catch(function(error){
+    console.log(error);
+  })
+
 }).catch(function(error){
     console.log(error);
 });
@@ -58,7 +82,7 @@ apigClient.reviewsGet(params, body , {}).then(function(res){
     count+=1
     total=total+parseFloat(reviews[review]['quality']);
   }
-  document.getElementById("rating").innerHTML=total/count;
+  document.getElementById("overall-rating").innerHTML=(total/count).toFixed(2);
 
 }).catch(function(error){
     console.log(error);
