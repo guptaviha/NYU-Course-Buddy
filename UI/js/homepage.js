@@ -63,9 +63,11 @@ apigClient.whishlistGet(params, body , {}).then(function(res){
      button.innerHTML="Delete";
      button.style.width="200px";
      button.style.float="right";
+     //btn btn-primary
+     button.className="btn btn-primary";
      var anchor=document.createElement("a");
      anchor.href='deletewhislist.html?courseid='+coursedata[course]['courseid']+'&school='+coursedata[course]['school']+'&program='+coursedata[course]['program']+'&section='+coursedata[course]['section']+'&year='+coursedata[course]['year'];
-     document.getElementById('wishlist-items').appendChild(button).appendChild(anchor);
+     document.getElementById('wishlist-items').appendChild(anchor).appendChild(button);
      
 /*    var li = document.createElement("li");
     li.className = "list-group-item";

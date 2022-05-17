@@ -95,7 +95,9 @@ let subjectcodes = []
 function funcpr(){
   var select = document.createElement("select");
   select.name = "programs";
-  select.id = "programlist"
+  select.id = "programlist";
+  select.className="form-select";
+
   sortedSubjects = sortLists(subjects,subjectcodes)
   for (const subject of sortedSubjects) {
     var option = document.createElement("option");
