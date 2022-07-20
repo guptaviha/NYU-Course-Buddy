@@ -50,8 +50,6 @@ For design and prototype using Figma [click here](https://www.figma.com/proto/mX
 
 ## Contributors:
 
-### Contributors
-
 <p float="left">
 
 <a href="https://github.com/therealbappi">
