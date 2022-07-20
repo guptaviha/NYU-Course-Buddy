@@ -50,10 +50,24 @@ For design and prototype using Figma [click here](https://www.figma.com/proto/mX
 
 ## Contributors:
 
-Bharath Sai Reddy Chinthapanti (bc3177@nyu.edu)
+### Contributors
 
-Purva Kondaji (pk2312@nyu.edu)
+<p float="left">
 
-Syed Ahmad Taqi (st4324@nyu.edu)
+<a href="https://github.com/therealbappi">
+    <img src="https://github.com/therealbappi.png?size=50" alt="Bharath" width="50">
+</a>
 
-Viha Gupta (vg2237@nyu.edu)
+<a href="https://github.com/purva-k">
+    <img src="https://github.com/purva-k.png?size=50" alt="Syed Ahmad" width="50">
+</a>
+
+<a href="https://github.com/alekzanderx1">
+    <img src="https://github.com/alekzanderx1.png?size=50" alt="Purva Kondaji" width="50">
+</a>
+
+<a href="https://github.com/guptaviha">
+    <img src="https://github.com/guptaviha.png?size=50" alt="Viha Gupta" width="50">
+</a>
+
+</p>
